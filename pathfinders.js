@@ -15,17 +15,20 @@ function setup() {
     const dim = Math.min(windowWidth, windowHeight);
     cnv = createCanvas(dim, dim);
     multiplier = width / 2400;
+    frameRate(60)
+    //noLoop()
+    cnv.mouseOver(search)    
+}
 
-
-    frameRate(5)
-    noLoop()
-    smooth()
-
+function search() {
+    let scale = 1 + Math.sin(199*10)
+    console.log(scale)
 }
 
 function setPalette() {
     let n = Math.floor(Math.random() * 99) + 1;
     let primary, secondary, travelerStroke, travelerFill
+
     if (n <= 2) {
         //DARK PALETTE
         primary = "#111111"
@@ -92,24 +95,22 @@ function setPalette() {
     } else {
         //TERMINAL PALETTE
         primary = "#111111"
-        secondary = "green"
+        secondary = "#00FF00"
         travelerStroke = "#111111"
-        travelerFill = "green"
+        travelerFill = "#00FF00"
         console.log("Terminal Palette (2% Probability of Occurrence Among 10 Available Palettes)")
     }
 
-    let color = [primary, secondary, travelerStroke, travelerFill]
-    return color
+    let palette = [primary, secondary, travelerStroke, travelerFill]
+    return palette
 }
-let color = setPalette()
-primary = color[0]
-secondary = color[1]
-travelerStroke = color[2]
-travelerFill = color[3]
+let palette = setPalette()
+primary = palette[0]
+secondary = palette[1]
+travelerStroke = palette[2]
+travelerFill = palette[3]
 
 function setShadowContext() {
-    drawingContext.shadowOffsetX = 0;
-    drawingContext.shadowOffsetY = 0;
     drawingContext.shadowBlur = 40 * multiplier;
     drawingContext.shadowColor = secondary;
 }
@@ -134,11 +135,20 @@ function drawTraveler() {
     **EXCLUSION, *SCREEN, **HARD_LIGHT, 
     **SOFT_LIGHT, **DODGE*/
     let x1, y1, x2, y2
+    let r = random(0,99)
     for (let i = 0; i < random(2, 10); i++) {
         let n = random(0, 99)
-        blendMode(DIFFERENCE)
+        if (r < 50) {
+            blendMode(DIFFERENCE)
+        } else {
+            blendMode(SOFT_LIGHT)
+        }
+
+        tint(255,0)
+        // DIFFERENCE or SOFT_LIGHT
+        filter(INVERT)
         rectMode(CENTER)
-        strokeWeight(random(1, random(10, 40)) * multiplier)
+        strokeWeight(random(1, random(0, 20)) * multiplier)
         stroke(travelerStroke)
         fill(travelerFill)
         x1 = random(width / 2.75, width / 2)
@@ -297,12 +307,20 @@ function drawStarGrid() {
         circle(random(0, width), random(0, height), diameter * multiplier - random(10, 20) * multiplier)
     }
 }
+var angle = 0
+var size = 1
+
 function draw() {
-    background(primary)
+    background(secondary)
+    let c = color(primary)
+    console.log(c)
+    //noLoop()
     setShadowContext()
+    c.setAlpha(255)
+    background(c)
+    randomSeed(10)
     let n = random(0, 100)
-
-
+    
     if (n < 50) {
         drawCircuitGrid()
         console.log('Circuit Grid (50% Probability of Occurrence Among 3 Grid Patterns)')
@@ -315,14 +333,13 @@ function draw() {
 
     }
 
-
     strokeWeight(5 * multiplier)
     stroke(secondary)
     fill(primary)
     circle(width / 2, height / 2, width / 2)
     revertShadowContext()
     drawTraveler()
-
+resetMatrix()
     
     stroke(secondary)
     strokeWeight(5)
@@ -334,9 +351,14 @@ function draw() {
     revertShadowContext()
     stroke("lightteal")
     strokeWeight(0.05 * multiplier)
+    
+    randomSeed(20)
+    
     for (let i = 0; i < 1000; i++) {
         line(random(0, width), random(0, height), random(0, width), random(0, height))
     }
+    
+    
 }
 
 
@@ -350,10 +372,8 @@ function rnd() {
 
 /*
 NEXT:
-- Add additional color palettes (10 total) (make sky palette rare)
-- 4 or less shapes?
-    - Add a second layer on top that's blend mode:
-    secondary stroke, primary fill
-
-Name ideas: harbor, port, voyager, vessel, craft
+- Use color() for colors >.<
+- Connect to artblocks
+- Add two more backgrounds (one: bezier curves, the other: sprial spheres?)
+- Animations: rotate and scale background, maybe play with opacity to reveal hidden backgrounds?
 */
