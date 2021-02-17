@@ -229,24 +229,61 @@ function drawBeziers() {
     var y4 = height * noise(t + 800);
 
     for (let i = 0; i < 10; i++) {
-        ellipse(x1 + i * 10, y1 + i * 10, -x3)
-        //circle(x1,y1,-y4 * Math.tan/*change wave*/(millis() * 0.001) / 5 /*change value*/ + (i * 1)/*change value*/ )
-        square(x1,y1,t* i * 40, x3)
+        /*BRUSH1
+        ellipse(x1 + i * 2, y1 + i * 2, -x3 / 100 )
+        circle(x1,y1 - Math.tan(millis() * 0.01) * 20,-y4 * Math.cos(millis() * 0.001)  + (i * 2))
+        */
+        
+        /*BRUSH2
+        circle(x1,y1,-y4 * Math.cos(millis() * 0.0005)  + (i * 2))
+        ellipse(x1 + i * 2, y1 + i * 2, -x3 / 100 )
+        */
+        /*BRUSH3
+        circle(x1,y1 - Math.sin(millis() * 0.01) * 100,-y4 * Math.cos(millis() * 0.0001)  + (i * 2))
+        square(x1,y1,Math.sin(millis() * 0.001) * 40)
+        */
 
-        //triangle(x1,y1,x2,y2,x3,y3)
+        /*BRUSH 4
+        circle(x1,y1,-y4 * Math.tan(millis() * 0.0005) / 20 + (i * 2) ) // and 0.005 for t
+        square(x4,y4,Math.sin(millis() * 0.005) * 20)
+        */
+        /*BRUSH 5
+        square(x1,y1,t* i * 20, x3)
+       circle(x1,y1,-y4 * Math.cos(millis() * 0.001) / 200 + (i * 2) )
+        */
 
+        /*BRUSH 6
+        triangle(x1 / Math.cos(millis(0.1)),y1,x2 - Math.tan(millis() * 0.0001) + i * 10,y2,x3,y3 - Math.tan(millis() * 0.0002) + (i * 2))
+        square(x1 + i * 2,y1,height/24 - Math.tan(millis() * 0.0001) * 200)
+        */
+
+        /*BRUSH 7
+        for (let i = 0; i<10; i++) {
+            ellipse(x1 + i * 10, x2 + i * 10, Math.tan(millis() * 0.001) * 20 )
+        }
+        */
+
+        /* BRUSH 8
+       for (let i = 0; i<20; i++) {
+        ellipse(x1 + i * 1, x2 + i * 1, Math.tan(millis() * 0.009) * 20 )
+        } 
+        */ 
+        
+        
         /*
-        beginShape(QUADS)    
-            vertex(x1,y2 + (Math.sin(millis()*0.00001) * 100))
+        beginShape(QUAD_STRIP)    
+            vertex(x1,y2 + (Math.sin(millis()*0.01) * 100))
             vertex(y2,y2 - i * 2)
             vertex(x3,y3)
             vertex(x4,y4)
         endShape()
         */
-        //line(x1 - i * 10,y1,x2,y2 + i * 2)
+        //line(x1 - i * 20,y1,x2,y2 + i * 1)
 
     }
     t += 0.001;
+
+    //t =+ 0.001, circle
 }
 
 function drawAvatar() {
@@ -275,9 +312,6 @@ function draw() {
         circle(width - 360 * multiplier, height - 360 * multiplier, width / 4)
 
 
-        revertShadowContext()
-        drawTraveler()
-
         /*
          stroke("lightteal")
         strokeWeight(0.01 * multiplier)
@@ -288,9 +322,13 @@ function draw() {
         */
 
     }
+randomSeed(2)    
+    revertShadowContext()
+    drawTraveler()
 
 }
 
 
 
 // shadow context on brush is fucking bonkers
+// change terminal and purple palettes
