@@ -56,21 +56,20 @@ function revertShadowContext() {
 function setPalette() {
     let n = Math.floor(Math.random() * 99) + 1;
     let primary, secondary, travelerStroke, travelerFill
-
     if (n <= 2) {
-        //DARK PALETTE
-        primary = "#111111"
-        secondary = "#eeeeee"
-        travelerStroke = "#111111"
-        travelerFill = "#eeeeee"
-        console.log("Dark Palette (2% Probability of Occurrence Among 10 Available Palettes)")
-    } else if (n > 2 && n < 17) {
         //LIGHT PALETTE
         primary = "#eeeeee"
         secondary = "#111111"
         travelerStroke = "#111111"
+        travelerFill = "#eeeeee"
+        console.log("Light Palette (2% Probability of Occurrence Among 10 Available Palettes)")
+    } else if (n > 2 && n < 17) {
+        //DARK PALETTE
+        primary = "#111111"
+        secondary = "#eeeeee"
+        travelerStroke = "#111111"
         travelerFill = "#111111"
-        console.log("Light Palette (15% Probability of Occurrence Among 10 Available Palettes)")
+        console.log("Dark Palette (15% Probability of Occurrence Among 10 Available Palettes)")
     } else if (n > 17 && n <= 23) {
         //EMERALD PALETTE
         primary = "#127475"
@@ -80,8 +79,8 @@ function setPalette() {
         console.log("Emerald Palette (6% Probability of Occurrence Among 10 Available Palettes)")
     } else if (n > 23 && n <= 38) {
         //CREAM PALETTE
-        primary = "#c4c0ba"
-        secondary = "#8447FF"
+        primary = "#8447FF" 
+        secondary = "#c4c0ba" 
         travelerStroke = "#111111"
         travelerFill = "#111111"
         console.log("Cream Palette (15% Probability of Occurrence Among 10 Available Palettes)")
@@ -115,17 +114,17 @@ function setPalette() {
         console.log("Steel Palette (12% Probability of Occurrence Among 10 Available Palettes)")
     } else if (n > 86 && n <= 98) {
         //JASMINE PALETTE
-        primary = "#F4D58D"
-        secondary = "#001427"
+        primary =  "#001427"
+        secondary = "#F4D58D"
         travelerStroke = "#111111"
         travelerFill = "#111111"
         console.log("Jasmine Palette (12% Probability of Occurrence Among 10 Available Palettes)")
     } else {
         //TERMINAL PALETTE
-        primary = "#111111"
-        secondary = "#00FF00"
-        travelerStroke = "#111111"
-        travelerFill = "#00FF00"
+        primary = "darkgreen"
+        secondary = "#111111"
+        travelerStroke = "darkgreen"
+        travelerFill = "#111111"
         console.log("Terminal Palette (2% Probability of Occurrence Among 10 Available Palettes)")
     }
 
@@ -233,10 +232,10 @@ function drawBeziers() {
         circle(x1,y1 - Math.tan(millis() * 0.01) * 20,-y4 * Math.cos(millis() * 0.001)  + (i * 2))
         */
 
-        /*BRUSH2
+        //BRUSH2
         circle(x1,y1,-y4 * Math.cos(millis() * 0.0005)  + (i * 2))
         ellipse(x1 + i * 2, y1 + i * 2, -x3 / 100 )
-        */
+        
         /*BRUSH3 
         circle(x1,y1 - Math.sin(millis() * 0.01) * 100,-y4 * Math.cos(millis() * 0.0001)  + (i * 2))
         square(x1,y1,Math.sin(millis() * 0.001) * 40)
@@ -246,10 +245,10 @@ function drawBeziers() {
         circle(x1,y1,-y4 * Math.tan(millis() * 0.0005) / 20 + (i * 2) ) // and 0.005 for t
         square(x4,y4,Math.sin(millis() * 0.005) * 20)
         */
-        /*BRUSH 5
+        //BRUSH 5
         square(x1,y1,t* i * 20, x3)
        circle(x1,y1,-y4 * Math.cos(millis() * 0.001) / 200 + (i * 2) )
-        */
+        
 
         /*BRUSH 6 (RARE?)
         triangle(x1 / Math.cos(millis(0.1)),y1,x2 - Math.tan(millis() * 0.0001) + i * 10,y2,x3,y3 - Math.tan(millis() * 0.0002) + (i * 2))
@@ -279,9 +278,9 @@ function drawBeziers() {
     //t =+ 0.001, circle
 }
 
-function drawAvatar() {
 
-}
+
+let avatarSeed = Math.floor(Math.random() * 99) + 1;
 
 function draw() {
     drawBeziers()
@@ -296,14 +295,14 @@ function draw() {
     circle(width - 360 * multiplier, height - 360 * multiplier, width / 4)
 
     if (frameCount < 2) {
-
+        
         setShadowContext()
         noFill()
         stroke(secondary)
         square(width / 2, height / 2, width / 1.182)
         fill(primary)
         circle(width - 360 * multiplier, height - 360 * multiplier, width / 4)
-
+        
 
         /*
          stroke("lightteal")
@@ -315,14 +314,20 @@ function draw() {
         */
 
     }
-    randomSeed(2)
+    randomSeed(avatarSeed)
     revertShadowContext()
+    
     drawTraveler()
-
+    
 }
 
 
 
-// shadow context on brush is fucking bonkers
-// change terminal and purple palettes
-// now combine brushes (start with 6 & 8)
+// now combine brushes (start with 6 & 8, 3 & 4, 5 & 7, 2 & 5)
+// organize brushes into functions
+// clean up code
+// "start screen"
+// click to start/stop functionality
+// 10 more color palettes
+// make art blocks compatible
+// push traits to feature array
