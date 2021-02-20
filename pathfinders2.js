@@ -20,7 +20,6 @@ function setup() {
     const dim = Math.min(windowWidth, windowHeight);
     cnv = createCanvas(dim, dim);
     cnv.mouseClicked(controls);
-    cnv.touchStarted(controls)
 
     multiplier = width / 2400;
     frameRate(100)
