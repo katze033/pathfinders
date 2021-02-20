@@ -12,25 +12,112 @@ let multiplier;
 let cnv
 
 
-let gridArea = 120
+let gridArea = 60
 let primary = '#111111'
 let secondary = "#eeeeee"
 
 function setup() {
     const dim = Math.min(windowWidth, windowHeight);
     cnv = createCanvas(dim, dim);
+    cnv.mouseClicked(controls);
+    cnv.touchStarted(controls)
+
     multiplier = width / 2400;
     frameRate(100)
-    //noLoop()
     background(primary)
     stroke(secondary)
 
-    strokeWeight(10)
+    strokeWeight(5 * multiplier)
     //drawGrid()
-    drawBeziers()
     fill(secondary)
     rectMode(CENTER)
+    let n = random(0, 100)
+    drawCircuitGrid()
+    noLoop()
 
+}
+
+let state = 'off'
+function controls() {
+    
+        if (state == 'off') {
+            background(primary)
+            loop()
+            state = 'on'
+        } else if (state == 'on') {
+            noLoop()
+            state = 'paused'
+        } else if (state == 'paused') {
+            background(primary)
+            loop()
+            state = 'on'
+        }
+    
+}
+
+function setGrid() {
+    let n = random(0, 100)
+    let rMax, cMax
+    console.log(n)
+    if (n >= 25 && n < 50) {
+        gridArea = 60
+        rMax = 40
+        cMax = 40
+        strokeWeight(2 * multiplier)
+    } else if (n >= 50 && n < 75) {
+        gridArea = 240
+        strokeWeight(3 * multiplier)
+        rMax = 10
+        cMax = 10
+    } else if (n >= 75 && n < 100) {
+        gridArea = 600
+        strokeWeight(3 * multiplier)
+        rMax = 4
+        cMax = 4
+    } else {
+        gridArea = 1200
+        strokeWeight(3 * multiplier)
+        rMax = 2
+        cMax = 2
+    }
+    console.log(gridArea)
+    return [gridArea, rMax, cMax]
+}
+function getGridOutputs() {
+    gridOutput = setGrid()
+    gridArea = gridOutput[0]
+    rMax = gridOutput[1]
+    cMax = gridOutput[2]
+}
+function drawCircuitGrid() {
+    getGridOutputs()
+    stroke(secondary)
+    fill(primary)
+    for (let r = 0; r < rMax; r++) {
+        for (let c = 0; c < cMax; c++) {
+            let x1, y1, x2, y2, x, y, d
+            let n = random(0, 3)
+            if (n < 1.5) {
+                x1 = 0 + (c * gridArea) * multiplier
+                y1 = 0 + (r * gridArea) * multiplier
+                x2 = gridArea * multiplier + (c * gridArea) * multiplier
+                y2 = gridArea * multiplier + (r * gridArea) * multiplier
+                line(
+                    x1, y1, x2, y2)
+            } else if (n > 2) {
+                x1 = gridArea * multiplier /*0*/ + (c * gridArea) * multiplier
+                y1 = gridArea * multiplier + (r * gridArea) * multiplier
+                x2 = gridArea * multiplier + (c * gridArea) * multiplier
+                y2 = 0 * multiplier /*0*/ + (r * gridArea) * multiplier
+                line(x1, y1, x2, y2)
+            } else {
+                x = gridArea / 2 * multiplier + c * gridArea * multiplier
+                y = gridArea / 2 * multiplier + r * gridArea * multiplier
+                d = gridArea / 4 * multiplier
+                circle(x, y, d)
+            }
+        }
+    }
 }
 function drawGrid() {
     noFill()
@@ -56,6 +143,7 @@ function revertShadowContext() {
 function setPalette() {
     let n = Math.floor(Math.random() * 99) + 1;
     let primary, secondary, travelerStroke, travelerFill
+
     if (n <= 2) {
         //LIGHT PALETTE
         primary = "#eeeeee"
@@ -79,24 +167,24 @@ function setPalette() {
         console.log("Emerald Palette (6% Probability of Occurrence Among 10 Available Palettes)")
     } else if (n > 23 && n <= 38) {
         //CREAM PALETTE
-        primary = "#8447FF" 
-        secondary = "#c4c0ba" 
+        primary = "#8447FF"
+        secondary = "#c4c0ba"
         travelerStroke = "#111111"
         travelerFill = "#111111"
         console.log("Cream Palette (15% Probability of Occurrence Among 10 Available Palettes)")
     } else if (n > 38 && n <= 50) {
         //SKY PALETTE
-        primary = "#86BBD8"
-        secondary = "#eeeeee"
+        primary = "#eeeeee"
+        secondary = "#86BBD8"
         travelerStroke = "#111111"
         travelerFill = "#111111"
         console.log("Sky Palette (12% Probability of Occurrence Among 10 Available Palettes)")
     } else if (n > 50 && n <= 62) {
         //ROSE PALETTE
-        primary = "#b27077"
-        secondary = "#eeeeee"
-        travelerStroke = "#111111"
-        travelerFill = "#111111"
+        primary = "#eeeeee"
+        secondary = "#b27077"
+        travelerStroke = "#eeeeee"
+        travelerFill = "#eeeeee"
         console.log("Rose Palette (12% Probability of Occurrence Among 10 Available Palettes)")
     } else if (n > 62 && n <= 74) {
         //CLOUD PALETTE
@@ -114,17 +202,17 @@ function setPalette() {
         console.log("Steel Palette (12% Probability of Occurrence Among 10 Available Palettes)")
     } else if (n > 86 && n <= 98) {
         //JASMINE PALETTE
-        primary =  "#001427"
+        primary = "#001427"
         secondary = "#F4D58D"
         travelerStroke = "#111111"
         travelerFill = "#111111"
         console.log("Jasmine Palette (12% Probability of Occurrence Among 10 Available Palettes)")
     } else {
         //TERMINAL PALETTE
-        primary = "darkgreen"
-        secondary = "#111111"
-        travelerStroke = "darkgreen"
-        travelerFill = "#111111"
+        primary = "#111111"
+        secondary = "#41FF00"
+        travelerStroke = "#41FF00"
+        travelerFill = "#41FF00"
         console.log("Terminal Palette (2% Probability of Occurrence Among 10 Available Palettes)")
     }
 
@@ -151,8 +239,6 @@ function drawTraveler() {
         } else {
             blendMode(SOFT_LIGHT)
         }
-
-        // DIFFERENCE or SOFT_LIGHT
         rectMode(CENTER)
         strokeWeight(random(1, 12) * multiplier)
         stroke(travelerStroke)
@@ -180,14 +266,6 @@ function drawTraveler() {
     for (let i = 0; i < random(1, 10); i++) { //1,10
         strokeWeight(random(1, 3) * multiplier)
 
-        /*
-                width 1800, 2280 max?
-                let x1 = 1850*multiplier
-                let y1 = 2040*multiplier
-                let x2 = 2230*multiplier
-                let y2 = y1
-                line(x1,y1,x2,y2)
-          */
         let x1 = random(1820 * multiplier, 2040 * multiplier)
         let y1 = random(1880 * multiplier, 2040 * multiplier)
         let x2 = x1
@@ -217,25 +295,228 @@ function drawBeziers() {
     strokeWeight(0.01 * multiplier)
     noFill()
 
-    var x1 = width * noise(t + 100);
-    var x2 = width * noise(t + 200);
-    var x3 = width * noise(t + 300);
-    var x4 = width * noise(t + 400);
-    var y1 = height * noise(t + 500);
-    var y2 = height * noise(t + 600);
-    var y3 = height * noise(t + 700);
-    var y4 = height * noise(t + 800);
+    var x1 = width * (noise(t + 100));
+    var x2 = width * (noise(t + 200));
+    var x3 = width * (noise(t + 300));
+    var x4 = width * (noise(t + 400));
+    var y1 = height * (noise(t + 500));
+    var y2 = height * (noise(t + 600));
+    var y3 = height * (noise(t + 700));
+    var y4 = height * (noise(t + 800));
+    let baseSize, waveTypeSpeed, waveSize, motionBlur
+
+    function brush0() {
+        for (let i = 0; i < 15; i++) {
+            baseSize = 200 * multiplier
+            waveTypeSpeed = Math.cos(millis() * 0.001)
+            waveSize = (200 * multiplier)
+            motionBlur = ((i * 1.1)) * multiplier
+            circle(
+                x1,
+                y1,
+                baseSize + waveTypeSpeed * waveSize + motionBlur)
+            baseSize = 0
+            waveTypeSpeed = Math.tan(millis() * 0.001)
+            waveSize = 0
+            motionBlur = ((i * 1) * multiplier)
+            ellipse(
+                x1,
+                y1,
+                baseSize + waveTypeSpeed * waveSize + motionBlur
+            )
+        }
+
+    }
+    function brush1() {
+        for (let i = 0; i < 20; i++) {
+            baseSize = 0 * multiplier
+            waveTypeSpeed = Math.tan(millis() * 0.001)
+            waveSize = (400 * multiplier)
+            motionBlur = ((i * 1.1)) * multiplier
+            circle(
+                x1,
+                y1,
+                baseSize + waveTypeSpeed * waveSize + motionBlur)
+            baseSize = 0
+            waveTypeSpeed = Math.tan(millis() * 0.01)
+            waveSize = 10 * multiplier
+            motionBlur = ((i * 1) * multiplier)
+            ellipse(
+                x1,
+                y1,
+                baseSize + waveTypeSpeed * waveSize + motionBlur
+            )
+        }
+    }
+    function brush2() {
+        for (let i = 0; i < 20; i++) {
+            baseSize = 0 * multiplier
+            waveTypeSpeed = Math.tan(millis() * 0.0005)
+            waveSize = (400 * multiplier) - t * 200
+            motionBlur = ((i * 1.1)) * multiplier
+            circle(
+                x1,
+                y1,
+                baseSize + waveTypeSpeed * waveSize + motionBlur)
+
+        }
+    }
+    function brush3() {
+        for (let i = 0; i < 10; i++) {
+            baseSize = 0 * multiplier
+            waveTypeSpeed = Math.cos(millis() * 0.0001)
+            waveSize = (1000 * multiplier)
+            motionBlur = ((i * 0)) * multiplier
+
+            circle(
+                x1,
+                y1,
+                baseSize + waveTypeSpeed * waveSize + motionBlur - ((i * 110 + t) * multiplier)
+            )
+
+        }
+    }
+    function brush4() {
+        for (let i = 0; i < 20; i++) {
+            baseSize = 0 * multiplier
+            waveTypeSpeed = Math.sin(millis() * 0.1)
+            waveSize = (1000 * multiplier) / waveTypeSpeed
+            motionBlur = ((i * 1.1)) * multiplier
+
+            triangle(
+                x1 + motionBlur,
+                y1 + motionBlur,
+                x2 + motionBlur, y2 + motionBlur, x3 + motionBlur, y3 + motionBlur,
+                baseSize + waveTypeSpeed * waveSize + motionBlur
+            )
+
+        }
+    }
+    function brush5() {
+        for (let i = 0; i < 10; i++) {
+            baseSize = 0 * multiplier
+            waveTypeSpeed = Math.cos(millis() * 0.01)
+            waveSize = (100 * multiplier) + t * (1000 * multiplier)
+            motionBlur = ((i * 4)) * multiplier
+            //circle(
+            //  x1,
+            //y1,
+            //baseSize + waveTypeSpeed * waveSize + motionBlur
+            //)
+        }
+        for (let i = 0; i < 10; i++) {
+            baseSize = 0 * multiplier
+            waveTypeSpeed = Math.sin(millis() * 0.001)
+            waveSize = (20 * multiplier)
+            motionBlur = ((i * 8)) * multiplier
+            bezier(
+                x1, y1,
+                x2, y2,
+                x3, y3,
+                x4, y4,
+                x1, y1 + waveTypeSpeed * waveSize + motionBlur
+            )
+        }
+    }
+    function brush6() {
+        for (let i = 0; i < 15; i++) {
+            baseSize = 0 * multiplier
+            waveTypeSpeed = Math.sin(millis() * 0.0005)
+            waveSize = (800 * multiplier)
+            motionBlur = ((i * 1)) * multiplier
+            circle(
+                x1,
+                y1,
+                baseSize + waveTypeSpeed * waveSize + motionBlur)
+        }
+    }
+    function brush7() {
+        for (let i = 0; i < 15; i++) {
+            baseSize = 0 * multiplier
+            waveTypeSpeed = Math.sin(millis() * 0.0005)
+            waveSize = (400 * multiplier)
+            motionBlur = ((i * 1.1)) * multiplier
+            square(
+                x1,
+                y1,
+                baseSize + waveTypeSpeed * waveSize + motionBlur)
+        }
+    }
+    function brush8() {
+        for (let i = 0; i < 15; i++) {
+            baseSize = 0 * multiplier
+            waveTypeSpeed = Math.tan(millis() * 0.0005)
+            waveSize = (200 * multiplier) - waveTypeSpeed
+            motionBlur = ((i * 1.1)) * multiplier + waveTypeSpeed
+            circle(
+                x1,
+                y1,
+                baseSize + waveTypeSpeed * waveSize + motionBlur)
+        }
+
+    }
+    function brush9() {
+    }
+    function brush10() {
+        brush4()
+        brush1()
+    }
+    function brush11() {
+
+        brush3()
+        brush1()
+    }
+    function brush12() {
+
+        brush7()
+        brush6()
+    }
+    function brush13() {
+
+        brush7()
+        brush5()
+    }
+    function brush14() {
+
+        brush0()
+        brush2()
+    }
+
+    let brushID = Math.floor(random() * 14);
+    let brushStroke = [
+        brush0,
+        brush1,
+        brush2,
+        brush3,
+        brush4,
+        brush5,
+        brush6,
+        brush7,
+        brush8,
+        brush9, //need code still
+        brush10,
+        brush11,
+        brush12,
+        brush13,
+        brush14,
+    ]
+
+    strokeWeight(random(0.005, 0.01) * multiplier)
+    brushStroke[brushID]()
+    console.log(brushID)
+    t += random(0.001, 0.005);
 
     for (let i = 0; i < 10; i++) {
+
         /*BRUSH1
         ellipse(x1 + i * 2, y1 + i * 2, -x3 / 100 )
         circle(x1,y1 - Math.tan(millis() * 0.01) * 20,-y4 * Math.cos(millis() * 0.001)  + (i * 2))
         */
 
-        //BRUSH2
+        /*BRUSH2
         circle(x1,y1,-y4 * Math.cos(millis() * 0.0005)  + (i * 2))
         ellipse(x1 + i * 2, y1 + i * 2, -x3 / 100 )
-        
+        /*
         /*BRUSH3 
         circle(x1,y1 - Math.sin(millis() * 0.01) * 100,-y4 * Math.cos(millis() * 0.0001)  + (i * 2))
         square(x1,y1,Math.sin(millis() * 0.001) * 40)
@@ -245,15 +526,15 @@ function drawBeziers() {
         circle(x1,y1,-y4 * Math.tan(millis() * 0.0005) / 20 + (i * 2) ) // and 0.005 for t
         square(x4,y4,Math.sin(millis() * 0.005) * 20)
         */
-        //BRUSH 5
+        /*BRUSH 5
         square(x1,y1,t* i * 20, x3)
        circle(x1,y1,-y4 * Math.cos(millis() * 0.001) / 200 + (i * 2) )
-        
+        */
 
         /*BRUSH 6 (RARE?)
         triangle(x1 / Math.cos(millis(0.1)),y1,x2 - Math.tan(millis() * 0.0001) + i * 10,y2,x3,y3 - Math.tan(millis() * 0.0002) + (i * 2))
         square(x1 + i * 2,y1,height/24 - Math.tan(millis() * 0.0001) * 200)
-        */
+        
 
         /*BRUSH 7 (RARE>)
         for (let i = 0; i<10; i++) {
@@ -265,24 +546,75 @@ function drawBeziers() {
        for (let i = 0; i<20; i++) {
         ellipse(x1 + i * 1, x2 + i * 1, Math.tan(millis() * 0.009) * 20 )
         } 
-         
-        /*
-             for (let i = 0; i < 5; i++) {
-                line(x1 + i * 20, y1 + i * 200, x2 - i, y2)
-            }
         */
+
+        /* BRUSH 9
+              for (let i = 0; i < 10; i++) {
+                 line(x1 - i * 40,y1 - i * 40,x2,y2)
+             }
+             circle(x1,y1 - Math.tan(millis() * 0.01) * 20,-y4 * Math.cos(millis() * 0.001)  + (i * 2))
+         
+ /*Brush 10
+        for (let i = 0; i < 5; i++) {
+         bezier(x1- i * 20,y1,x2,y2,x3,y3,x1,y1)
+         
+         }
+         circle(x1,y1,-y4 * Math.tan(millis() * 0.0002) + i *2)
+   */
+
+        /*brush 11 (6&8)
+              triangle(x1 / Math.cos(millis(0.1)),y1,x2 - Math.tan(millis() * 0.0001) + i * 10,y2,x3,y3 - Math.tan(millis() * 0.0002) + (i * 2))
+              square(x1 + i * 2,y1,height/24 - Math.tan(millis() * 0.0001) * 200)
+             for (let i = 0; i<20; i++) {
+              ellipse(x1 + i * 1, x2 + i * 1, Math.tan(millis() * 0.009) * 20 )
+              } 
+      
         
+        /*brush 12 (3&4)
+              circle(x1,y1 - Math.sin(millis() * 0.01) * 100,-y4 * Math.cos(millis() * 0.0001)  + (i * 2))
+              square(x1,y1,Math.sin(millis() * 0.001) * 40)
+        
+              circle(x1,y1,-y4 * Math.tan(millis() * 0.0005) / 20 + (i * 2) ) // and 0.005 for t
+              square(x4,y4,Math.sin(millis() * 0.005) * 20)
+        
+        */
+
+        /*brush 13 (5&7)
+              square(x1,y1,t* i * 20, x3)
+             circle(x1,y1,-y4 * Math.cos(millis() * 0.001) / 200 + (i * 2) )
+          for (let i = 0; i<10; i++) {
+                  ellipse(x1 + i * 10, x2 + i * 10, Math.tan(millis() * 0.001) * 20 )
+              }
+          */
+
+
+        /*brush 14 (2&5)
+            circle(x1,y1,-y4 * Math.cos(millis() * 0.0005)  + (i * 2))
+              ellipse(x1 + i * 2, y1 + i * 2, -x3 / 100 )
+              square(x1,y1,t* i * 20, x3)
+             circle(x1,y1,-y4 * Math.cos(millis() * 0.001) / 200 + (i * 2) )
+          */
+
+        /*brush 15
+          ellipse(x1 + i * 2, y1 + i * 2, t * 250 )
+          ellipse(x2 + i * 2, y2 + i * 2, t * 250 )
+          ellipse(x3 + i * 2, y3 + i * 2, t * 250 )
+          ellipse(x4 + i * 2, y4 + i * 2, t * 250 )
+          */
+
+
+
     }
-    t += 0.001;
 
     //t =+ 0.001, circle
 }
 
 
 
-let avatarSeed = Math.floor(Math.random() * 99) + 1;
+let avatarSeed = Math.floor(Math.random() * 999) + 1;
 
 function draw() {
+    noFill()
     drawBeziers()
     resetMatrix()
     stroke(secondary)
@@ -295,39 +627,27 @@ function draw() {
     circle(width - 360 * multiplier, height - 360 * multiplier, width / 4)
 
     if (frameCount < 2) {
-        
         setShadowContext()
         noFill()
-        stroke(secondary)
-        square(width / 2, height / 2, width / 1.182)
-        fill(primary)
+        noStroke()
+
+        stroke(primary)
+        fill(secondary)
         circle(width - 360 * multiplier, height - 360 * multiplier, width / 4)
-        
-
-        /*
-         stroke("lightteal")
-        strokeWeight(0.01 * multiplier)
-        randomSeed(20)
-                for (let i = 0; i < 5000; i++) {
-                    line(random(0, width), random(0, height), random(0, width), random(0, height))
-                }
-        */
-
     }
-    randomSeed(avatarSeed)
     revertShadowContext()
-    
+    randomSeed(avatarSeed)
     drawTraveler()
-    
+
 }
 
 
 
-// now combine brushes (start with 6 & 8, 3 & 4, 5 & 7, 2 & 5)
-// organize brushes into functions
-// clean up code
 // "start screen"
 // click to start/stop functionality
+// clean up code
 // 10 more color palettes
 // make art blocks compatible
 // push traits to feature array
+//why does draw beziers run twice? does it still happen after making artblocks compaitable?
+//brush ideas: blinking tan wave one from earlier draft, rect/tri/circ combined
