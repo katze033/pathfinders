@@ -523,8 +523,16 @@ function drawBeziers() {
     ]
 
     //edit 8 & 9 & maybe 14
-    strokeWeight(random(0.005, 0.01) * multiplier)
+    /*
+    error brushes: 
+    6: doesn't work on edge probably not mobile
+    8: doesn't work on edge probably not mobile
+    11 (brush 3 doesn't show up)
+
+    */
+    strokeWeight(0.01 * multiplier)
     brushStroke[brushID]()
+    console.log(brushID)
     t += random(0.001, 0.005);
 
     for (let i = 0; i < 10; i++) {
