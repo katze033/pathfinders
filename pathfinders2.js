@@ -249,8 +249,7 @@ function drawTraveler() {
         let c = random(0 * multiplier, 25 * multiplier)
         rect(x1, y1, x2, y2, c)
         rect(4080 * multiplier - x1, y1, x2, y2, c)
-
-
+        blendMode(BLEND)
     }
 
     blendMode(BLEND)
@@ -362,15 +361,25 @@ function drawBeziers() {
     }
     function brush3() {
         for (let i = 0; i < 10; i++) {
-            baseSize = 0 * multiplier
-            waveTypeSpeed = Math.cos(millis() * 0.0001)
-            waveSize = (1000 * multiplier)
-            motionBlur = ((i * 0)) * multiplier
+            baseSize = 10 * multiplier
+            waveTypeSpeed = Math.cos(millis() * 0.001)
+            waveSize = (1500 * multiplier) + Math.tan(millis() * 0.0001)
+            motionBlur = ((i * 5)) * multiplier
 
             circle(
                 x1,
                 y1,
-                baseSize + waveTypeSpeed * waveSize + motionBlur - ((i * 110 + t) * multiplier)
+                baseSize + waveTypeSpeed * waveSize + motionBlur
+            )
+            baseSize = 0 * multiplier 
+            waveTypeSpeed = Math.cos(millis() * 0.005)
+            waveSize = (50 * multiplier) + Math.tan(millis() * 0.005)
+            motionBlur = ((i * 1)) * multiplier
+
+            square(
+                x2,
+                y2,
+                baseSize + waveTypeSpeed * waveSize + motionBlur
             )
 
         }
@@ -432,14 +441,21 @@ function drawBeziers() {
     function brush7() {
         for (let i = 0; i < 15; i++) {
             baseSize = 0 * multiplier
-            waveTypeSpeed = Math.sin(millis() * 0.0005)
+            waveTypeSpeed = Math.tan(millis() * 0.0005)
             waveSize = (400 * multiplier)
             motionBlur = ((i * 1.1)) * multiplier
             square(
                 x1,
                 y1,
                 baseSize + waveTypeSpeed * waveSize + motionBlur)
-        }
+                circle(
+                    x1,
+                    y1,
+                    (baseSize + waveTypeSpeed * waveSize + motionBlur)/2
+                    )
+            
+            }
+        
     }
     function brush8() {
         for (let i = 0; i < 15; i++) {
@@ -455,6 +471,24 @@ function drawBeziers() {
 
     }
     function brush9() {
+        for (let i = 0; i < 10; i++) {
+            baseSize = 0 * multiplier
+            waveTypeSpeed = Math.tan(millis() * 0.01)
+            waveSize = (19 * multiplier)
+            motionBlur = ((i * 1.1)) * multiplier
+            square(
+                x1,
+                y1,
+                baseSize + waveTypeSpeed * waveSize + motionBlur)
+                line(
+                    x1,
+                    y1,
+                    x4,
+                    y4
+                    )
+            
+            }
+       
     }
     function brush10() {
         brush4()
@@ -499,7 +533,7 @@ function drawBeziers() {
         brush13,
         brush14,
     ]
-
+//9
     strokeWeight(random(0.005, 0.01) * multiplier)
     brushStroke[brushID]()
     console.log(brushID)
