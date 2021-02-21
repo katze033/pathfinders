@@ -57,7 +57,6 @@ function controls() {
 function setGrid() {
     let n = random(0, 100)
     let rMax, cMax
-    console.log(n)
     if (n >= 25 && n < 50) {
         gridArea = 60
         rMax = 40
@@ -79,7 +78,6 @@ function setGrid() {
         rMax = 2
         cMax = 2
     }
-    console.log(gridArea)
     return [gridArea, rMax, cMax]
 }
 function getGridOutputs() {
@@ -350,7 +348,7 @@ function drawBeziers() {
         for (let i = 0; i < 20; i++) {
             baseSize = 0 * multiplier
             waveTypeSpeed = Math.tan(millis() * 0.0005)
-            waveSize = (400 * multiplier) - t * 200
+            waveSize = (400 * multiplier)
             motionBlur = ((i * 1.1)) * multiplier
             circle(
                 x1,
@@ -401,17 +399,7 @@ function drawBeziers() {
         }
     }
     function brush5() {
-        for (let i = 0; i < 10; i++) {
-            baseSize = 0 * multiplier
-            waveTypeSpeed = Math.cos(millis() * 0.01)
-            waveSize = (100 * multiplier) + t * (1000 * multiplier)
-            motionBlur = ((i * 4)) * multiplier
-            //circle(
-            //  x1,
-            //y1,
-            //baseSize + waveTypeSpeed * waveSize + motionBlur
-            //)
-        }
+        
         for (let i = 0; i < 10; i++) {
             baseSize = 0 * multiplier
             waveTypeSpeed = Math.sin(millis() * 0.001)
@@ -514,7 +502,7 @@ function drawBeziers() {
         brush0()
         brush2()
     }
-
+    
     let brushID = Math.floor(random() * 14);
     let brushStroke = [
         brush0,
@@ -526,17 +514,17 @@ function drawBeziers() {
         brush6,
         brush7,
         brush8,
-        brush9, //need code still
+        brush9,
         brush10,
         brush11,
         brush12,
         brush13,
         brush14,
     ]
-//9
+
+    //edit 8 & 9 & maybe 14
     strokeWeight(random(0.005, 0.01) * multiplier)
     brushStroke[brushID]()
-    console.log(brushID)
     t += random(0.001, 0.005);
 
     for (let i = 0; i < 10; i++) {
