@@ -532,7 +532,6 @@ function drawBeziers() {
     */
     strokeWeight(0.01 * multiplier)
     brushStroke[brushID]()
-    console.log(brushID)
     t += random(0.001, 0.005);
 
     for (let i = 0; i < 10; i++) {
