@@ -294,9 +294,6 @@ let t
 t = 0
 
 function drawBeziers() {
-    stroke(secondary)
-    strokeWeight(0.01 * multiplier)
-    noFill()
 
     var x1 = width * (noise(t + 100*multiplier));
     var x2 = width * (noise(t + 200*multiplier));
@@ -545,10 +542,11 @@ function drawBeziers() {
 
     //edit 8 & 9 & maybe 14
     
+    stroke(secondary)
     strokeWeight(0.01 * multiplier)
+    noFill()
     brushStroke[brushID]()
     t += random(0.001, 0.005);
-    console.log(brushID)
 }
 
 
