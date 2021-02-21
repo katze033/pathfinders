@@ -1,0 +1,26 @@
+{
+  "name": "artblocks_outline",
+  "version": "1.0.0",
+  "description": "Artblocks #2 draft.",
+  "main": "old.js",
+  "dependencies": {
+    "p5.createloop": "^0.1.3",
+    "riso-colors": "^1.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.20.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/katze033/pathfinder.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/katze033/pathfinder/issues"
+  },
+  "homepage": "https://github.com/katze033/pathfinder#readme"
+}

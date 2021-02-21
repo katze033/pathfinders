@@ -20,7 +20,7 @@ function setup() {
     const dim = Math.min(windowWidth, windowHeight);
     cnv = createCanvas(dim, dim);
     cnv.mouseClicked(controls);
-
+    pixelDensity(5)
     multiplier = width / 2400;
     frameRate(100)
     background(primary)
@@ -36,9 +36,9 @@ function setup() {
 
 }
 
+
 let state = 'off'
 function controls() {
-    
         if (state == 'off') {
             background(primary)
             loop()
@@ -51,7 +51,6 @@ function controls() {
             loop()
             state = 'on'
         }
-    
 }
 
 function setGrid() {
