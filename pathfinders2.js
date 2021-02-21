@@ -1,4 +1,8 @@
-let tokenData = { "hash": "0xb049be6ffbf1e3b28f26d6a1ad6cb110bf60ccc939a2bb18d989404888859817", "tokenId": "7000118" }
+//ARTBLOCKS SET UP
+let tokenData = {
+    "hash": "0xb049be6ffbf1e3b28f26d6a1ad6cb110bf60ccc939a2bb18d989404888859817",
+    "tokenId": "7000118"
+}
 let hashPairs = [];
 for (let j = 0; j < 32; j++) {
     hashPairs.push(tokenData.hash.slice(2 + (j * 2), 4 + (j * 2)));
@@ -8,13 +12,12 @@ let decPairs = hashPairs.map(x => {
     return parseInt(x, 16);
 });
 
-let multiplier;
-let cnv
-
-
-let gridArea = 60
-let primary = '#111111'
-let secondary = "#eeeeee"
+//GLOBAL VAR
+var multiplier;
+var cnv
+var gridArea = 60
+var primary = '#111111'
+var secondary = "#eeeeee"
 
 function setup() {
     const dim = Math.min(windowWidth, windowHeight);
@@ -37,19 +40,20 @@ function setup() {
 
 
 let state = 'off'
+
 function controls() {
-        if (state == 'off') {
-            background(primary)
-            loop()
-            state = 'on'
-        } else if (state == 'on') {
-            noLoop()
-            state = 'paused'
-        } else if (state == 'paused') {
-            background(primary)
-            loop()
-            state = 'on'
-        }
+    if (state == 'off') {
+        background(primary)
+        loop()
+        state = 'on'
+    } else if (state == 'on') {
+        noLoop()
+        state = 'paused'
+    } else if (state == 'paused') {
+        background(primary)
+        loop()
+        state = 'on'
+    }
 }
 
 function setGrid() {
@@ -78,12 +82,14 @@ function setGrid() {
     }
     return [gridArea, rMax, cMax]
 }
+
 function getGridOutputs() {
     gridOutput = setGrid()
     gridArea = gridOutput[0]
     rMax = gridOutput[1]
     cMax = gridOutput[2]
 }
+
 function drawCircuitGrid() {
     getGridOutputs()
     stroke(secondary)
@@ -114,6 +120,7 @@ function drawCircuitGrid() {
         }
     }
 }
+
 function drawGrid() {
     noFill()
     for (let r = 0; r < 20; r++)
@@ -125,10 +132,12 @@ function drawGrid() {
                 gridArea * multiplier)
         }
 }
+
 function setShadowContext() {
     drawingContext.shadowBlur = 40 * multiplier;
     drawingContext.shadowColor = secondary;
 }
+
 function revertShadowContext() {
     drawingContext.shadowOffsetX = 0;
     drawingContext.shadowOffsetY = 0;
@@ -223,8 +232,8 @@ travelerFill = palette[3]
 
 function drawTraveler() {
     /*, *LIGHTEST, **DIFFERENCE, 
-    **EXCLUSION, *SCREEN, **HARD_LIGHT, 
-    **SOFT_LIGHT, **DODGE*/
+     **EXCLUSION, *SCREEN, **HARD_LIGHT, 
+     **SOFT_LIGHT, **DODGE*/
     let x1, y1, x2, y2
     let r = random(0, 99)
 
@@ -268,7 +277,7 @@ function drawTraveler() {
         line(4080 * multiplier - x1, y1, 4080 * multiplier - x2, y2)
         line(x1, 4080 * multiplier - y1, x2, y2)
         line(4080 * multiplier - x1, 4080 * multiplier - y1, 4080 * multiplier - x2, y2)
-        x1 = random(1840 * multiplier, 2040 * multiplier)//1820*multiplier;
+        x1 = random(1840 * multiplier, 2040 * multiplier) //1820*multiplier;
         y1 = random(1840 * multiplier, 2040 * multiplier)
         x2 = 2040 * multiplier
         y2 = y1
@@ -289,14 +298,14 @@ function drawBeziers() {
     strokeWeight(0.01 * multiplier)
     noFill()
 
-    var x1 = width * (noise(t + 100));
-    var x2 = width * (noise(t + 200));
-    var x3 = width * (noise(t + 300));
-    var x4 = width * (noise(t + 400));
-    var y1 = height * (noise(t + 500));
-    var y2 = height * (noise(t + 600));
-    var y3 = height * (noise(t + 700));
-    var y4 = height * (noise(t + 800));
+    var x1 = width * (noise(t + 100*multiplier));
+    var x2 = width * (noise(t + 200*multiplier));
+    var x3 = width * (noise(t + 300*multiplier));
+    var x4 = width * (noise(t + 400*multiplier));
+    var y1 = height * (noise(t + 500*multiplier));
+    var y2 = height * (noise(t + 600*multiplier));
+    var y3 = height * (noise(t + 700*multiplier));
+    var y4 = height * (noise(t + 800*multiplier));
     let baseSize, waveTypeSpeed, waveSize, motionBlur
 
     function brush0() {
@@ -321,6 +330,7 @@ function drawBeziers() {
         }
 
     }
+
     function brush1() {
         for (let i = 0; i < 20; i++) {
             baseSize = 0 * multiplier
@@ -342,6 +352,7 @@ function drawBeziers() {
             )
         }
     }
+
     function brush2() {
         for (let i = 0; i < 20; i++) {
             baseSize = 0 * multiplier
@@ -355,6 +366,7 @@ function drawBeziers() {
 
         }
     }
+
     function brush3() {
         for (let i = 0; i < 10; i++) {
             baseSize = 10 * multiplier
@@ -367,7 +379,7 @@ function drawBeziers() {
                 y1,
                 baseSize + waveTypeSpeed * waveSize + motionBlur
             )
-            baseSize = 0 * multiplier 
+            baseSize = 0 * multiplier
             waveTypeSpeed = Math.cos(millis() * 0.005)
             waveSize = (50 * multiplier) + Math.tan(millis() * 0.005)
             motionBlur = ((i * 1)) * multiplier
@@ -380,6 +392,7 @@ function drawBeziers() {
 
         }
     }
+
     function brush4() {
         for (let i = 0; i < 20; i++) {
             baseSize = 0 * multiplier
@@ -396,8 +409,9 @@ function drawBeziers() {
 
         }
     }
+
     function brush5() {
-        
+
         for (let i = 0; i < 10; i++) {
             baseSize = 0 * multiplier
             waveTypeSpeed = Math.sin(millis() * 0.001)
@@ -412,6 +426,7 @@ function drawBeziers() {
             )
         }
     }
+
     function brush6() {
         for (let i = 0; i < 15; i++) {
             baseSize = 0 * multiplier
@@ -424,6 +439,7 @@ function drawBeziers() {
                 baseSize + waveTypeSpeed * waveSize + motionBlur)
         }
     }
+
     function brush7() {
         for (let i = 0; i < 15; i++) {
             baseSize = 0 * multiplier
@@ -434,15 +450,16 @@ function drawBeziers() {
                 x1,
                 y1,
                 baseSize + waveTypeSpeed * waveSize + motionBlur)
-                circle(
-                    x1,
-                    y1,
-                    (baseSize + waveTypeSpeed * waveSize + motionBlur)/2
-                    )
-            
-            }
-        
+            circle(
+                x1,
+                y1,
+                (baseSize + waveTypeSpeed * waveSize + motionBlur) / 2
+            )
+
+        }
+
     }
+
     function brush8() {
         for (let i = 0; i < 15; i++) {
             baseSize = 0 * multiplier
@@ -456,6 +473,7 @@ function drawBeziers() {
         }
 
     }
+
     function brush9() {
         for (let i = 0; i < 10; i++) {
             baseSize = 0 * multiplier
@@ -466,41 +484,46 @@ function drawBeziers() {
                 x1,
                 y1,
                 baseSize + waveTypeSpeed * waveSize + motionBlur)
-                line(
-                    x1,
-                    y1,
-                    x4,
-                    y4
-                    )
-            
-            }
-       
+            line(
+                x1,
+                y1,
+                x4,
+                y4
+            )
+
+        }
+
     }
+
     function brush10() {
         brush4()
         brush1()
     }
+
     function brush11() {
 
         brush3()
         brush1()
     }
+
     function brush12() {
 
         brush7()
         brush6()
     }
+
     function brush13() {
 
         brush7()
         brush5()
     }
+
     function brush14() {
 
         brush0()
         brush2()
     }
-    
+
     let brushID = Math.floor(random() * 14);
     let brushStroke = [
         brush0,
@@ -521,13 +544,7 @@ function drawBeziers() {
     ]
 
     //edit 8 & 9 & maybe 14
-    /*
-    error brushes: 
-    6: doesn't work on edge probably not mobile
-    8: doesn't work on edge probably not mobile
-    11 (brush 3 doesn't show up)
-
-    */
+    
     strokeWeight(0.01 * multiplier)
     brushStroke[brushID]()
     t += random(0.001, 0.005);
