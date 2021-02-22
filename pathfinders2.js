@@ -304,9 +304,9 @@ function drawImage() {
     }
 
     function brush1() {
-        strokeWeight((0.01 * multiplier) * pixelDensity()/2)
+        strokeWeight(0.01 * multiplier)
         for (let i = 0; i < 40; i++) {
-            baseSize = 0 * multiplier
+            baseSize = 1 * multiplier
             waveTypeSpeed = Math.tan(millis() * 0.001)
             waveSize = (400 * multiplier)
             motionBlur = ((i * 1.1)) * multiplier
