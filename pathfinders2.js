@@ -520,9 +520,7 @@ function drawImage() {
     //edit 8 & 9 & maybe 14
 
     stroke(secondary)
-    let test = 0.01
-    strokeWeight(test * multiplier)
-    console.log(test)
+    strokeWeight(0.01 * multiplier)
     noFill()
     brushStroke[brushID]()
     t += random(0.001, 0.005);
