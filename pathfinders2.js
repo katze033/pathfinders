@@ -300,10 +300,21 @@ function drawImage() {
                 baseSize + waveTypeSpeed * waveSize + motionBlur
             )
         }
-
+        
     }
 
     function brush1() {
+        for (let i = 0; i < 20; i++) {
+            baseSize = 0 * multiplier
+            waveTypeSpeed = Math.tan(millis() * 0.001)
+            waveSize = (400 * multiplier)
+            motionBlur = ((i * 1.1)) * multiplier
+            circle(
+                x1,
+                y1,
+                baseSize + waveTypeSpeed * waveSize + motionBlur)
+            }
+        /*
         for (let i = 0; i < 20; i++) {
             baseSize = 0 * multiplier
             waveTypeSpeed = Math.tan(millis() * 0.001)
@@ -323,6 +334,7 @@ function drawImage() {
                 baseSize + waveTypeSpeed * waveSize + motionBlur
             )
         }
+        */
     }
 
     function brush2() {
