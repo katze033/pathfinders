@@ -20,7 +20,6 @@ var primary = '#111111'
 var secondary = "#eeeeee"
 
 function setup() {
-pixelDensity(1)
     const dim = Math.min(windowWidth, windowHeight);
     cnv = createCanvas(dim, dim);
     cnv.mouseClicked(controls);
@@ -305,20 +304,9 @@ function drawImage() {
     }
 
     function brush1() {
-        translate(width/2,height/2)
-        scale(0.1)
-        strokeWeight(1 * multiplier)
+        stroke(0,10)
+        strokeWeight(1)
         
-        for (let i = 0; i < 2; i++) {
-            baseSize = 0 * multiplier
-            waveTypeSpeed = Math.tan(millis() /20)
-            waveSize = (400 * multiplier)
-            motionBlur = ((i * 2)) * multiplier
-            circle(
-                x1,
-                y1,
-                baseSize + waveTypeSpeed * waveSize + motionBlur)
-        /*
         for (let i = 0; i < 40; i++) {
             baseSize = 0 * multiplier
             waveTypeSpeed = Math.tan(millis() * 0.001)
@@ -329,17 +317,16 @@ function drawImage() {
                 y1,
                 baseSize + waveTypeSpeed * waveSize + motionBlur)
             baseSize = 0
-            waveTypeSpeed = Math.tan(millis() * 0.1)
-            waveSize = 1000 * multiplier
+            waveTypeSpeed = Math.tan(millis() * 0.01)
+            waveSize = 10 * multiplier
             motionBlur = ((i * 1) * multiplier)
             ellipse(
                 x1,
                 y1,
                 baseSize + waveTypeSpeed * waveSize + motionBlur
             )
-            */
         }
-        resetMatrix()
+        
     }
 
     function brush2() {
