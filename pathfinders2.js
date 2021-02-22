@@ -82,7 +82,7 @@ function setGrid() {
 }
 
 function getGridOutputs() {
-    gridOutput = setGrid()
+    let gridOutput = setGrid()
     gridArea = gridOutput[0]
     rMax = gridOutput[1]
     cMax = gridOutput[2]
