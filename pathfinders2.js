@@ -304,7 +304,8 @@ function drawImage() {
     }
 
     function brush1() {
-        for (let i = 0; i < 20; i++) {
+        strokeWeight(0.01 * multiplier * pixelDensity())
+        for (let i = 0; i < 40; i++) {
             baseSize = 0 * multiplier
             waveTypeSpeed = Math.tan(millis() * 0.001)
             waveSize = (400 * multiplier)
@@ -517,7 +518,6 @@ function drawImage() {
     //edit 8 & 9 & maybe 14
 
     stroke(secondary)
-    strokeWeight(0.01 * multiplier)
     noFill()
     brushStroke[brushID]()
     t += random(0.001, 0.005);
