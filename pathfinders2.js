@@ -282,9 +282,16 @@ function drawImage() {
     var y4 = height * (noise(t + 800 * multiplier));
     let baseSize, waveTypeSpeed, waveSize, motionBlur
 
-    
-        
+    function setImageStroke() {
+    let newSecondary = color(secondary)
+        newSecondary.setAlpha(10)
+        stroke(newSecondary)
+        strokeWeight(1*multiplier)
+    }
+
     function brush0() {
+        setImageStroke()
+
         for (let i = 0; i < 15; i++) {
             baseSize = 200 * multiplier
             waveTypeSpeed = Math.cos(millis() * 0.001)
@@ -308,12 +315,8 @@ function drawImage() {
     }
 
     function brush1() {
-        let newSecondary = color(secondary)
-        newSecondary.setAlpha(10)
-        stroke(newSecondary)
+        setImageStroke()
 
-
-        strokeWeight(1*multiplier)
         
         for (let i = 0; i < 20; i++) {
             baseSize = 0 * multiplier
@@ -334,6 +337,8 @@ function drawImage() {
     }
 
     function brush2() {
+        setImageStroke()
+
         for (let i = 0; i < 20; i++) {
             baseSize = 0 * multiplier
             waveTypeSpeed = Math.tan(millis() * 0.0005)
@@ -348,6 +353,8 @@ function drawImage() {
     }
 
     function brush3() {
+        setImageStroke()
+        
         for (let i = 0; i < 10; i++) {
             baseSize = 10 * multiplier
             waveTypeSpeed = Math.cos(millis() * 0.001)
@@ -374,6 +381,8 @@ function drawImage() {
     }
 
     function brush4() {
+        setImageStroke()
+
         for (let i = 0; i < 20; i++) {
             baseSize = 0 * multiplier
             waveTypeSpeed = Math.sin(millis() * 0.1)
@@ -391,6 +400,7 @@ function drawImage() {
     }
 
     function brush5() {
+        setImageStroke()
 
         for (let i = 0; i < 10; i++) {
             baseSize = 0 * multiplier
@@ -407,6 +417,8 @@ function drawImage() {
     }
 
     function brush6() {
+        setImageStroke()
+
         for (let i = 0; i < 15; i++) {
             baseSize = 0 * multiplier
             waveTypeSpeed = Math.sin(millis() * 0.0005)
@@ -420,6 +432,8 @@ function drawImage() {
     }
 
     function brush7() {
+        setImageStroke()
+
         for (let i = 0; i < 15; i++) {
             baseSize = 0 * multiplier
             waveTypeSpeed = Math.tan(millis() * 0.0005)
@@ -440,6 +454,8 @@ function drawImage() {
     }
 
     function brush8() {
+        setImageStroke()
+
         for (let i = 0; i < 15; i++) {
             baseSize = 0 * multiplier
             waveTypeSpeed = Math.tan(millis() * 0.0005)
@@ -454,6 +470,8 @@ function drawImage() {
     }
 
     function brush9() {
+        setImageStroke()
+
         for (let i = 0; i < 10; i++) {
             baseSize = 0 * multiplier
             waveTypeSpeed = Math.tan(millis() * 0.01)
@@ -503,7 +521,7 @@ function drawImage() {
         brush2()
     }
 
-    let brushID = 1//Math.floor(random() * 14);
+    let brushID = Math.floor(random() * 14);
     let brushStroke = [
         brush0,
         brush1,
