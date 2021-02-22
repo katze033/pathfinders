@@ -122,7 +122,7 @@ function drawCircuitGrid() {
 function setPalette() {
     let n = Math.floor(Math.random() * 99) + 1;
     let primary, secondary, travelerStroke, travelerFill
-
+    
     if (n <= 2) {
         //LIGHT PALETTE
         primary = "#eeeeee"
@@ -268,6 +268,8 @@ function drawAvatar() {
 let t
 t = 0
 
+
+
 function drawImage() {
 
     var x1 = width * (noise(t + 100 * multiplier));
@@ -280,6 +282,8 @@ function drawImage() {
     var y4 = height * (noise(t + 800 * multiplier));
     let baseSize, waveTypeSpeed, waveSize, motionBlur
 
+    
+        
     function brush0() {
         for (let i = 0; i < 15; i++) {
             baseSize = 200 * multiplier
@@ -304,7 +308,11 @@ function drawImage() {
     }
 
     function brush1() {
-        stroke(0,10)
+        let newSecondary = color(secondary)
+        newSecondary.setAlpha(10)
+        stroke(newSecondary)
+
+
         strokeWeight(1*multiplier)
         
         for (let i = 0; i < 20; i++) {
@@ -527,6 +535,9 @@ let avatarSeed = Math.floor(Math.random() * 999) + 1;
 function draw() {
     noFill()
     resetMatrix()
+    if (frameCount > 1) {
+        drawImage() 
+    }
     stroke(secondary)
     strokeWeight(360 * multiplier)
     rect(width / 2, height / 2, width, height)
@@ -544,9 +555,6 @@ function draw() {
         stroke(primary)
         fill(secondary)
         circle(width - 360 * multiplier, height - 360 * multiplier, width / 4)
-    }
-    if (frameCount > 1) {
-        drawImage() 
     }
     revertShadowContext()
     randomSeed(avatarSeed)
