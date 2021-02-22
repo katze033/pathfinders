@@ -81,10 +81,10 @@ function setGrid() {
 }
 
 function getGridOutputs() {
-    let gridOutput = setGrid()
-    gridArea = gridOutput[0]
-    rMax = gridOutput[1]
-    cMax = gridOutput[2]
+    let gridOutputs = setGrid()
+    gridArea = gridOutputs[0]
+    rMax = gridOutputs[1]
+    cMax = gridOutputs[2]
 }
 
 function drawCircuitGrid() {
