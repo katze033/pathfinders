@@ -29,7 +29,6 @@ function setup() {
 
     //drawGrid()
     rectMode(CENTER)
-    let n = random(0, 100)
     drawCircuitGrid()
     noLoop()
 
@@ -497,7 +496,7 @@ function drawImage() {
         brush2()
     }
 
-    let brushID = Math.floor(random() * 14);
+    let brushID = 1//Math.floor(random() * 14);
     let brushStroke = [
         brush0,
         brush1,
@@ -549,7 +548,7 @@ function draw() {
         circle(width - 360 * multiplier, height - 360 * multiplier, width / 4)
     }
     if (frameCount > 1) {
-        drawImage()
+        drawImage() 
     }
     revertShadowContext()
     randomSeed(avatarSeed)
