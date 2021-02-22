@@ -26,7 +26,6 @@ function setup() {
     multiplier = width / 2400;
     frameRate(60)
     background(primary)
-    stroke(secondary)
 
     //drawGrid()
     rectMode(CENTER)
@@ -38,6 +37,7 @@ function setup() {
 
 
 let state = 'off'
+
 function controls() {
 
     if (state == 'off') {
@@ -119,28 +119,7 @@ function drawCircuitGrid() {
     }
 }
 
-function drawGrid() {
-    noFill()
-    for (let r = 0; r < 20; r++)
-        for (let c = 0; c < 20; c++) {
-            rect(
-                (gridArea * c) * multiplier,
-                (gridArea * r) * multiplier,
-                gridArea * multiplier,
-                gridArea * multiplier)
-        }
-}
 
-function setShadowContext() {
-    drawingContext.shadowBlur = 40 * multiplier;
-    drawingContext.shadowColor = secondary;
-}
-
-function revertShadowContext() {
-    drawingContext.shadowOffsetX = 0;
-    drawingContext.shadowOffsetY = 0;
-    drawingContext.shadowBlur = 0;
-}
 
 function setPalette() {
     let n = Math.floor(Math.random() * 99) + 1;
@@ -228,79 +207,79 @@ secondary = palette[1]
 travelerStroke = palette[2]
 travelerFill = palette[3]
 
-function drawTraveler() {
-    /*, *LIGHTEST, **DIFFERENCE, 
-     **EXCLUSION, *SCREEN, **HARD_LIGHT, 
-     **SOFT_LIGHT, **DODGE*/
+function drawAvatar() {
     let x1, y1, x2, y2
-    let r = random(0, 99)
 
-    for (let i = 0; i < random(2, 16); i++) {
-        if (r < 50) {
-            blendMode(DIFFERENCE)
-        } else {
-            blendMode(SOFT_LIGHT)
+    function drawAvatarShapes() {
+        for (let i = 0; i < random(2, 16); i++) {
+            n = random(0, 99)
+            if (n < 50) {
+                blendMode(DIFFERENCE)
+            } else {
+                blendMode(SOFT_LIGHT)
+            }
+            rectMode(CENTER)
+            strokeWeight(random(1, 12) * multiplier)
+            stroke(travelerStroke)
+            fill(travelerFill)
+            x1 = random(1920 * multiplier, 2225 * multiplier)
+            y1 = random(height - 300 * multiplier, height - 480 * multiplier)
+            x2 = random(25 * multiplier, 75 * multiplier)
+            y2 = random(25 * multiplier, 75 * multiplier)
+            let c = random(0 * multiplier, 25 * multiplier)
+            rect(x1, y1, x2, y2, c)
+            rect(4080 * multiplier - x1, y1, x2, y2, c)
         }
-        rectMode(CENTER)
-        strokeWeight(random(1, 12) * multiplier)
-        stroke(travelerStroke)
-        fill(travelerFill)
-        x1 = random(1920 * multiplier, 2225 * multiplier)
-        y1 = random(height - 300 * multiplier, height - 480 * multiplier)
-        x2 = random(25 * multiplier, 75 * multiplier)
-        y2 = random(25 * multiplier, 75 * multiplier)
-        let c = random(0 * multiplier, 25 * multiplier)
-        rect(x1, y1, x2, y2, c)
-        rect(4080 * multiplier - x1, y1, x2, y2, c)
-        blendMode(BLEND)
     }
 
+    function drawAvatarLines() {
+        for (let i = 0; i < random(1, 10); i++) { //1,10
+            strokeWeight(random(1, 3) * multiplier)
+
+            let x1 = random(1820 * multiplier, 2040 * multiplier)
+            let y1 = random(1880 * multiplier, 2040 * multiplier)
+            let x2 = x1
+            let y2 = 2040 * multiplier
+            line(x1, y1, x2, y2)
+            line(4080 * multiplier - x1, y1, 4080 * multiplier - x2, y2)
+            line(x1, 4080 * multiplier - y1, x2, y2)
+            line(4080 * multiplier - x1, 4080 * multiplier - y1, 4080 * multiplier - x2, y2)
+            x1 = random(1840 * multiplier, 2040 * multiplier) //1820*multiplier;
+            y1 = random(1840 * multiplier, 2040 * multiplier)
+            x2 = 2040 * multiplier
+            y2 = y1
+            line(x1, y1, x2, y2)
+            line(4080 * multiplier - x1, y1, 4080 * multiplier - x2, y2)
+            line(x1, 4080 * multiplier - y1, x2, 4080 * multiplier - y2)
+            line(4080 * multiplier - x1, 4080 * multiplier - y1, 4080 * multiplier - x2, 4080 * multiplier - y2)
+
+        }
+    }
+
+    drawAvatarShapes()
     blendMode(BLEND)
-
     n = random(0, 99)
-
     if (n < 40) {
         stroke(secondary)
     } else {
         stroke(primary)
     }
-    for (let i = 0; i < random(1, 10); i++) { //1,10
-        strokeWeight(random(1, 3) * multiplier)
-
-        let x1 = random(1820 * multiplier, 2040 * multiplier)
-        let y1 = random(1880 * multiplier, 2040 * multiplier)
-        let x2 = x1
-        let y2 = 2040 * multiplier
-        line(x1, y1, x2, y2)
-        line(4080 * multiplier - x1, y1, 4080 * multiplier - x2, y2)
-        line(x1, 4080 * multiplier - y1, x2, y2)
-        line(4080 * multiplier - x1, 4080 * multiplier - y1, 4080 * multiplier - x2, y2)
-        x1 = random(1840 * multiplier, 2040 * multiplier) //1820*multiplier;
-        y1 = random(1840 * multiplier, 2040 * multiplier)
-        x2 = 2040 * multiplier
-        y2 = y1
-        line(x1, y1, x2, y2)
-        line(4080 * multiplier - x1, y1, 4080 * multiplier - x2, y2)
-        line(x1, 4080 * multiplier - y1, x2, 4080 * multiplier - y2)
-        line(4080 * multiplier - x1, 4080 * multiplier - y1, 4080 * multiplier - x2, 4080 * multiplier - y2)
-
-    }
-
+    drawAvatarLines()
 }
 
 let t
 t = 0
 
-function drawBeziers() {
+function drawImage() {
 
-    var x1 = width * (noise(t + 100*multiplier));
-    var x2 = width * (noise(t + 200*multiplier));
-    var x3 = width * (noise(t + 300*multiplier));
-    var x4 = width * (noise(t + 400*multiplier));
-    var y1 = height * (noise(t + 500*multiplier));
-    var y2 = height * (noise(t + 600*multiplier));
-    var y3 = height * (noise(t + 700*multiplier));
-    var y4 = height * (noise(t + 800*multiplier));
+    var x1 = width * (noise(t + 100 * multiplier));
+    var x2 = width * (noise(t + 200 * multiplier));
+    var x3 = width * (noise(t + 300 * multiplier));
+    var x4 = width * (noise(t + 400 * multiplier));
+    var y1 = height * (noise(t + 500 * multiplier));
+    var y2 = height * (noise(t + 600 * multiplier));
+    var y3 = height * (noise(t + 700 * multiplier));
+    var y4 = height * (noise(t + 800 * multiplier));
     let baseSize, waveTypeSpeed, waveSize, motionBlur
 
     function brush0() {
@@ -539,13 +518,14 @@ function drawBeziers() {
     ]
 
     //edit 8 & 9 & maybe 14
-    
+
     stroke(secondary)
-    strokeWeight(0.01 * multiplier)
+    let test = 0.01
+    strokeWeight(test * multiplier)
+    console.log(test)
     noFill()
     brushStroke[brushID]()
     t += random(0.001, 0.005);
-    console.log(brushID)
 }
 
 let avatarSeed = Math.floor(Math.random() * 999) + 1;
@@ -572,21 +552,39 @@ function draw() {
         circle(width - 360 * multiplier, height - 360 * multiplier, width / 4)
     }
     if (frameCount > 1) {
-        drawBeziers()
+        drawImage()
     }
     revertShadowContext()
     randomSeed(avatarSeed)
-    drawTraveler()
+    drawAvatar()
 
 }
 
+function drawGrid() {
+    noFill()
+    for (let r = 0; r < 20; r++)
+        for (let c = 0; c < 20; c++) {
+            rect(
+                (gridArea * c) * multiplier,
+                (gridArea * r) * multiplier,
+                gridArea * multiplier,
+                gridArea * multiplier)
+        }
+}
 
+function setShadowContext() {
+    drawingContext.shadowBlur = 40 * multiplier;
+    drawingContext.shadowColor = secondary;
+}
 
-// "start screen"
-// click to start/stop functionality
-// clean up code
-// 10 more color palettes
-// make art blocks compatible
-// push traits to feature array
-//why does draw beziers run twice? does it still happen after making artblocks compaitable?
-//brush ideas: blinking tan wave one from earlier draft, rect/tri/circ combined
+function revertShadowContext() {
+    drawingContext.shadowOffsetX = 0;
+    drawingContext.shadowOffsetY = 0;
+    drawingContext.shadowBlur = 0;
+}
+/* 
+- 10 more color palettes
+- make art blocks compatible
+- push traits to feature array
+- brush ideas: blinking tan wave one from earlier draft, rect/tri/circ combined
+*/
