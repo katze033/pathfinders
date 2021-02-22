@@ -304,7 +304,7 @@ function drawImage() {
     }
 
     function brush1() {
-        strokeWeight(0.01 * multiplier)
+        strokeWeight((0.01 * multiplier) * pixelDensity()/2)
         for (let i = 0; i < 40; i++) {
             baseSize = 0 * multiplier
             waveTypeSpeed = Math.tan(millis() * 0.001)
