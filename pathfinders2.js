@@ -304,11 +304,11 @@ function drawImage() {
     }
 
     function brush1() {
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 50*multiplier; i++) {
             baseSize = 0 * multiplier
             waveTypeSpeed = Math.tan(millis() * 0.001)
             waveSize = (400 * multiplier)
-            motionBlur = ((i * 1.1)) * multiplier
+            motionBlur = ((i * 1)) * multiplier
             circle(
                 x1,
                 y1,
