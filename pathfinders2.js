@@ -299,7 +299,7 @@ function drawImage() {
         strokeWeight(1 * multiplier)
     }
 
-    let brushID = 8 //Math.floor(random() * 14);
+    let brushID = Math.floor(random() * 8);//8
 
     function brush0() {
         //SMOKY ORB BRUSH
