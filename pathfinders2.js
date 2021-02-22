@@ -26,7 +26,6 @@ function setup() {
     multiplier = width / 2400;
     frameRate(60)
     background(primary)
-pixelDensity(1)
     //drawGrid()
     rectMode(CENTER)
     drawCircuitGrid()
