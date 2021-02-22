@@ -305,15 +305,15 @@ function drawImage() {
 
     function brush1() {
         strokeWeight(0.01 * multiplier)
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 20; i++) {
             baseSize = 0 * multiplier
             waveTypeSpeed = Math.tan(millis() * 0.001)
             waveSize = (400 * multiplier)
             motionBlur = ((i * 1.1)) * multiplier
-            circle(
-                x1,
-                y1,
-                100*multiplier)
+            //circle(
+              //  x1,
+               // y1,
+                //100*multiplier)
             baseSize = 0
             waveTypeSpeed = Math.tan(millis() * 0.01)
             waveSize = 10 * multiplier
@@ -321,7 +321,7 @@ function drawImage() {
             ellipse(
                 x1,
                 y1,
-                100*multiplier
+                100*multiplier + (waveTypeSpeed*waveSize)
             )
         }
         /*
