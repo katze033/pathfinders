@@ -24,13 +24,11 @@ function setup() {
     cnv = createCanvas(dim, dim);
     cnv.mouseClicked(controls);
     multiplier = width / 2400;
-    frameRate(100)
+    frameRate(60)
     background(primary)
     stroke(secondary)
 
-    strokeWeight(5 * multiplier)
     //drawGrid()
-    fill(secondary)
     rectMode(CENTER)
     let n = random(0, 100)
     drawCircuitGrid()
@@ -40,8 +38,8 @@ function setup() {
 
 
 let state = 'off'
-
 function controls() {
+
     if (state == 'off') {
         background(primary)
         loop()
@@ -547,8 +545,8 @@ function drawBeziers() {
     noFill()
     brushStroke[brushID]()
     t += random(0.001, 0.005);
+    console.log(brushID)
 }
-
 
 let avatarSeed = Math.floor(Math.random() * 999) + 1;
 
