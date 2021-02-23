@@ -299,7 +299,7 @@ function drawImage() {
         strokeWeight(1 * multiplier)
     }
 
-    let brushID = Math.floor(random() * 8);//8
+    let brushID = 12 //Math.floor(random() * 14);
 
     function brush0() {
         //SMOKY ORB BRUSH
@@ -437,7 +437,7 @@ function drawImage() {
                 x4, y4, x3, y3
             )
         }
-    
+
     }
 
     function brush6() {
@@ -458,7 +458,7 @@ function drawImage() {
             waveSize = (200 * multiplier)
             motionBlur = ((i * 1)) * multiplier
             square(
-                x1,y1,baseSize + waveTypeSpeed * waveSize + motionBlur
+                x1, y1, baseSize + waveTypeSpeed * waveSize + motionBlur
             )
         }
     }
@@ -476,7 +476,7 @@ function drawImage() {
                 x1,
                 y1,
                 baseSize + waveTypeSpeed * waveSize + motionBlur)
-            
+
             baseSize = 0 * multiplier
             waveTypeSpeed = Math.cos(millis() * 0.0001)
             waveSize = (1000 * multiplier)
@@ -488,9 +488,9 @@ function drawImage() {
                 y2,
                 x3,
                 baseSize + waveTypeSpeed * waveSize + motionBlur)
-            }    
+        }
     }
-    
+
 
     function brush8() {
         //GEM CLOUD AND CHAIN STROKE
@@ -505,8 +505,8 @@ function drawImage() {
                 x1,
                 y1,
                 baseSize + waveTypeSpeed * waveSize - motionBlur)
-        
-        baseSize = 0 * multiplier
+
+            baseSize = 0 * multiplier
             waveTypeSpeed = Math.cos(millis() * 0.005)
             waveSize = (40 * multiplier)
             motionBlur = ((i * 1)) * multiplier
@@ -519,11 +519,118 @@ function drawImage() {
 
     }
 
-    function brush9() {}
+    function brush9() {
+        //CLOTH FLAME BRUSH
+        setImageStroke()
+        
 
-    function brush10() {}
+        for (let i = 0; i < 10; i++) {
+            baseSize = 100 * multiplier
+            waveTypeSpeed = Math.tan(millis() * 0.01)
+            waveSize = (10 * multiplier)
+            motionBlur = ((i * 1)) * multiplier
+            circle(
+                x1,
+                y1,
+                baseSize + waveTypeSpeed * waveSize + motionBlur)
+            circle(
+                x2,
+                y2,
+                baseSize + waveTypeSpeed * waveSize + motionBlur)
+            circle(
+                x3,
+                y3,
+                baseSize + waveTypeSpeed * waveSize + motionBlur)
 
-    function brush11() {}
+
+            baseSize = 0 * multiplier
+            waveTypeSpeed = Math.cos(millis() * 0.005)
+            waveSize = (40 * multiplier)
+            motionBlur = ((i * 1)) * multiplier
+            triangle(
+                x1,
+                y1,
+                x2,
+                y2,
+                x3,
+                y3 + baseSize + waveTypeSpeed * waveSize + motionBlur)
+
+        }
+    }
+
+    function brush10() {
+        setImageStroke()
+        
+        //SKELETON BRUSH - CIRCLE
+        for (let i = 0; i < 15; i++) {
+            baseSize = 100 * multiplier
+            waveTypeSpeed = Math.tan(millis() * 0.01)
+            waveSize = (0 * multiplier)
+            motionBlur = ((i * 2)) * multiplier
+            circle(
+                x1,
+                y1,
+                baseSize + waveTypeSpeed * waveSize + motionBlur)
+            circle(
+                x2,
+                y2,
+                baseSize + waveTypeSpeed * waveSize + motionBlur)
+            circle(
+                x3,
+                y3,
+                baseSize + waveTypeSpeed * waveSize + motionBlur)
+
+
+            baseSize = 0 * multiplier
+            waveTypeSpeed = Math.cos(millis() * 0.005)
+            waveSize = (40 * multiplier)
+            motionBlur = ((i * 1)) * multiplier
+            triangle(
+                x1,
+                y1,
+                x2,
+                y2,
+                x3,
+                y3 + baseSize + waveTypeSpeed * waveSize + motionBlur)
+            }
+    }
+
+    function brush11() {
+        setImageStroke()
+        
+        //SKELETON BRUSH - SQUARE
+        for (let i = 0; i < 15; i++) {
+            baseSize = 0 * multiplier
+            waveTypeSpeed = Math.cos(millis() * 0.001)
+            waveSize = (250 * multiplier)
+            motionBlur = ((i * 1)) * multiplier
+            square(
+                x1,
+                y1,
+                baseSize + waveTypeSpeed * waveSize + motionBlur)
+            square(
+                x2,
+                y2,
+                baseSize + waveTypeSpeed * waveSize + motionBlur)
+            square(
+                x3,
+                y3,
+                baseSize + waveTypeSpeed * waveSize + motionBlur)
+
+
+            baseSize = 0 * multiplier
+            waveTypeSpeed = Math.cos(millis() * 0.005)
+            waveSize = (40 * multiplier)
+            motionBlur = ((i * 1)) * multiplier
+            triangle(
+                x1,
+                y1,
+                x2,
+                y2,
+                x3,
+                y3 + baseSize + waveTypeSpeed * waveSize + motionBlur)
+            }
+    }
 
     function brush12() {}
 
