@@ -61,15 +61,15 @@ function setGrid() {
     let featuresGridSize
     let n = random(0, 100)
     let rMax, cMax
-    
+
     if (n <= 33) {
         gridArea = 60
         rMax = 40
         cMax = 40
 
         featuresGridSize = "Start Screen Grid: Small"
-        
- 
+
+
     } else if (n > 33 && n <= 69) {
         gridArea = 240
         strokeWeight(3 * multiplier)
@@ -92,7 +92,7 @@ function setGrid() {
 
         featuresGridSize = "Start Screen Grid: Large"
     }
-    
+
     features.push(featuresGridSize)
     return [gridArea, rMax, cMax, featuresGridSize]
 }
@@ -147,17 +147,17 @@ function setPalette() {
         secondary = "#111111"
         travelerStroke = "#111111"
         travelerFill = "#eeeeee"
-        
-        featurePalette="Light Palette"
 
-        } else if (n > 5 && n <= 10) {
+        featurePalette = "Light Palette"
+
+    } else if (n > 5 && n <= 10) {
         //DARK PALETTE
         primary = "#111111"
         secondary = "#eeeeee"
         travelerStroke = "#111111"
         travelerFill = "#111111"
-    
-        featurePalette="Dark Palette"
+
+        featurePalette = "Dark Palette"
 
     } else if (n > 10 && n <= 15) {
         //EMERALD PALETTE
@@ -165,17 +165,17 @@ function setPalette() {
         secondary = "#F5DFBB"
         travelerStroke = "#111111"
         travelerFill = "#127457"
-    
-        featurePalette="Emerald Palette"
+
+        featurePalette = "Emerald Palette"
     } else if (n > 15 && n <= 20) {
         //CREAM PALETTE
         primary = "#8447FF"
         secondary = "#c4c0ba"
         travelerStroke = "#111111"
         travelerFill = "#111111"
-    
-        featurePalette="Cream Palette"
-    
+
+        featurePalette = "Cream Palette"
+
     } else if (n > 20 && n <= 25) {
         //SKY PALETTE
         primary = "#eeeeee"
@@ -183,8 +183,8 @@ function setPalette() {
         travelerStroke = "#111111"
         travelerFill = "#111111"
 
-        featurePalette="Sky Palette"
-    
+        featurePalette = "Sky Palette"
+
     } else if (n > 25 && n <= 30) {
         //ROSE PALETTE
         primary = "#eeeeee"
@@ -192,7 +192,7 @@ function setPalette() {
         travelerStroke = "#eeeeee"
         travelerFill = "#eeeeee"
 
-        featurePalette="Rose Palette"
+        featurePalette = "Rose Palette"
 
 
     } else if (n > 30 && n <= 35) {
@@ -201,10 +201,10 @@ function setPalette() {
         secondary = "#435060"
         travelerStroke = "#111111"
         travelerFill = "#111111"
-        
-        featurePalette="Overcast Palette"
 
-        
+        featurePalette = "Overcast Palette"
+
+
     } else if (n > 35 && n <= 40) {
         //STEEL PALETTE
         primary = "#435060"
@@ -212,7 +212,7 @@ function setPalette() {
         travelerStroke = "#111111"
         travelerFill = "#111111"
 
-        featurePalette="Steel Palette"
+        featurePalette = "Steel Palette"
 
     } else if (n > 40 && n <= 45) {
         //JASMINE PALETTE
@@ -221,7 +221,7 @@ function setPalette() {
         travelerStroke = "#111111"
         travelerFill = "#111111"
 
-        featurePalette="Jasmine Palette"
+        featurePalette = "Jasmine Palette"
 
     } else if (n > 45 && n <= 50) {
         //TERMINAL PALETTE
@@ -230,7 +230,7 @@ function setPalette() {
         travelerStroke = "#41FF00"
         travelerFill = "#41FF00"
 
-        featurePalette="Jasmine Palette"
+        featurePalette = "Jasmine Palette"
 
     } else if (n > 50 && n <= 55) {
         primary = "#ED8B8A"
@@ -238,7 +238,7 @@ function setPalette() {
         travelerStroke = "#BE00FF"
         travelerFill = "#BE00FF"
 
-        featurePalette="Bubblegum Palette"
+        featurePalette = "Bubblegum Palette"
 
     } else if (n > 55 && n <= 60) {
         primary = "#BE00FF"
@@ -246,7 +246,7 @@ function setPalette() {
         travelerStroke = "#BE00FF"
         travelerFill = "#BE00FF"
 
-        featurePalette="Neon Palette"
+        featurePalette = "Neon Palette"
 
     } else if (n > 60 && n <= 65) {
         primary = "#111111"
@@ -254,7 +254,7 @@ function setPalette() {
         travelerStroke = "#111111"
         travelerFill = "#111111"
 
-        featurePalette="Ice Palette"
+        featurePalette = "Ice Palette"
 
     } else if (n > 65 && n <= 70) {
         primary = "#ffebd8"
@@ -262,22 +262,22 @@ function setPalette() {
         travelerStroke = "#7BB800"
         travelerFill = "#ffebd8"
 
-        featurePalette="Slime Palette"
+        featurePalette = "Slime Palette"
     } else if (n > 70 && n <= 75) {
         primary = "#47383B"
         secondary = "#BCAF9F"
         travelerStroke = "#BCAF9F"
         travelerFill = "#BCAF9F"
 
-        featurePalette="Adobe Palette"
+        featurePalette = "Adobe Palette"
 
     } else if (n > 75 && n <= 80) {
         primary = "#BCAF9F"
         secondary = "#322E3B"
         travelerStroke = "#322E3B"
         travelerFill = "#322E3B"
-       
-        featurePalette="Muted Violet Palette"
+
+        featurePalette = "Muted Violet Palette"
 
 
     } else if (n > 80 && n <= 85) {
@@ -286,33 +286,33 @@ function setPalette() {
         travelerStroke = "#41FF00"
         travelerFill = "#41FF00"
 
-        featurePalette="Terminal Blue Palette"
-        
-    } else if (n > 85 && n <= 90){
+        featurePalette = "Terminal Blue Palette"
+
+    } else if (n > 85 && n <= 90) {
         primary = "#111111"
         secondary = "#F2B7C6"
         travelerStroke = "#41FF00"
         travelerFill = "#41FF00"
 
-        featurePalette="Unicorn Palette"
+        featurePalette = "Unicorn Palette"
 
     } else {
         primary = "#111111"
         secondary = "#FCEA08"
-        travelerStroke = "#111111"//"#41FF00"
+        travelerStroke = "#111111" //"#41FF00"
         travelerFill = "#111111"
 
-        featurePalette="Bumblebee Palette"
+        featurePalette = "Bumblebee Palette"
 
     }
-    
+
     features.push(featurePalette)
 
-//#FCEA08
+    //#FCEA08
 
 
-let palette = [primary, secondary, travelerStroke, travelerFill]
-return palette
+    let palette = [primary, secondary, travelerStroke, travelerFill]
+    return palette
 }
 
 let palette = setPalette()
@@ -385,24 +385,20 @@ let t
 t = 0
 
 //#endregion
+
+let featureBrushStroke = Math.floor(Math.random() * 14);
+features.push('Brush Texture '+featureBrushStroke)
+console.log(features)
 function drawImage() {
     var x1 = width * (noise(t + 100 * multiplier));
     var x2 = width * (noise(t + 200 * multiplier));
     var x3 = width * (noise(t + 300 * multiplier));
     var x4 = width * (noise(t + 400 * multiplier));
-    var x5 = width * (noise(t + 500 * multiplier));
-    var x6 = width * (noise(t + 600 * multiplier));
-    var x7 = width * (noise(t + 700 * multiplier));
-    var x8 = width * (noise(t + 800 * multiplier));
     var y1 = height * (noise(t + 900 * multiplier));
     var y2 = height * (noise(t + 1000 * multiplier));
     var y3 = height * (noise(t + 1100 * multiplier));
     var y4 = height * (noise(t + 1200 * multiplier));
-    var y5 = height * (noise(t + 1300 * multiplier));
-    var y6 = height * (noise(t + 1400 * multiplier));
-    var y7 = height * (noise(t + 1500 * multiplier));
-    var y8 = height * (noise(t + 1600 * multiplier));
-
+    
     let baseSize, waveTypeSpeed, waveSize, motionBlur
 
     function setImageStroke() {
@@ -412,8 +408,8 @@ function drawImage() {
         strokeWeight(1 * multiplier)
     }
 
-    let brushID = Math.floor(random() * 14);
-    
+    let brushID = featureBrushStroke;
+//#region 
     function brush0() {
         //SMOKY ORB BRUSH
         setImageStroke()
@@ -624,12 +620,12 @@ function drawImage() {
                 x2,
                 y2,
                 baseSize + waveTypeSpeed * waveSize + motionBlur)
-                ellipse(
-                    x3,
-                    y3,
-                    baseSize + waveTypeSpeed * waveSize + motionBlur)
-    
-            
+            ellipse(
+                x3,
+                y3,
+                baseSize + waveTypeSpeed * waveSize + motionBlur)
+
+
         }
 
     }
@@ -723,13 +719,13 @@ function drawImage() {
                 x1,
                 y1,
                 baseSize + waveTypeSpeed * waveSize + motionBlur)
-                waveTypeSpeed = Math.cos(millis() * 0.0001)
+            waveTypeSpeed = Math.cos(millis() * 0.0001)
 
             square(
                 x2,
                 y2,
                 baseSize + waveTypeSpeed * waveSize + motionBlur)
-                waveTypeSpeed = Math.cos(millis() * 0.0005)
+            waveTypeSpeed = Math.cos(millis() * 0.0005)
 
             square(
                 x3,
@@ -806,11 +802,14 @@ function drawImage() {
         brush14,
     ]
 
+    t += random(0.001, 0.005);
+
+
     stroke(secondary)
     noFill()
     brushStroke[brushID]()
-    t += random(0.001, 0.005);
-    
+
+//#endregion
 }
 
 let avatarSeed = Math.floor(Math.random() * 999) + 1;
@@ -830,6 +829,7 @@ function draw() {
 
     circle(width - 360 * multiplier, height - 360 * multiplier, width / 4)
     if (frameCount < 1) {
+
         setShadowContext()
         noFill()
         noStroke()
