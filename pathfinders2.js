@@ -1,3 +1,5 @@
+//#region 
+
 //ARTBLOCKS SET UP
 let tokenData = {
     "hash": "0xb049be6ffbf1e3b28f26d6a1ad6cb110bf60ccc939a2bb18d989404888859817",
@@ -19,6 +21,9 @@ var gridArea = 60
 var primary = '#111111'
 var secondary = "#eeeeee"
 
+//#endregion
+var features = []
+
 function setup() {
     const dim = Math.min(windowWidth, windowHeight);
     cnv = createCanvas(dim, dim);
@@ -33,9 +38,9 @@ function setup() {
 
 }
 
-
 let state = 'off'
 
+//#region 
 function controls() {
 
     if (state == 'off') {
@@ -53,31 +58,45 @@ function controls() {
 }
 
 function setGrid() {
+    let featuresGridSize
     let n = random(0, 100)
     let rMax, cMax
-    if (n >= 25 && n < 50) {
+    
+    if (n <= 33) {
         gridArea = 60
         rMax = 40
         cMax = 40
-        strokeWeight(2 * multiplier)
-    } else if (n >= 50 && n < 75) {
+
+        featuresGridSize = "Start Screen Grid: Small"
+        
+ 
+    } else if (n > 33 && n <= 69) {
         gridArea = 240
         strokeWeight(3 * multiplier)
         rMax = 10
         cMax = 10
-    } else if (n >= 75 && n < 100) {
+
+        featuresGridSize = "Start Screen Grid: Medium"
+    } else if (n < 69 && n <= 84) {
         gridArea = 600
         strokeWeight(3 * multiplier)
         rMax = 4
         cMax = 4
+
+        featuresGridSize = "Start Screen Grid: Large"
     } else {
         gridArea = 1200
         strokeWeight(3 * multiplier)
         rMax = 2
         cMax = 2
+
+        featuresGridSize = "Start Screen Grid: Large"
     }
-    return [gridArea, rMax, cMax]
+    
+    features.push(featuresGridSize)
+    return [gridArea, rMax, cMax, featuresGridSize]
 }
+
 
 function getGridOutputs() {
     let gridOutputs = setGrid()
@@ -118,131 +137,178 @@ function drawCircuitGrid() {
 }
 
 
-
 function setPalette() {
     let n = Math.floor(Math.random() * 99) + 1;
-    let primary, secondary, travelerStroke, travelerFill
+    let primary, secondary, travelerStroke, travelerFill, featurePalette
+
     if (n <= 5) {
         //LIGHT PALETTE
         primary = "#eeeeee"
         secondary = "#111111"
         travelerStroke = "#111111"
         travelerFill = "#eeeeee"
-        console.log("Light Palette (2% Probability of Occurrence Among 10 Available Palettes)")
-    } else if (n > 5 && n <= 10) {
+        
+        featurePalette="Light Palette"
+
+        } else if (n > 5 && n <= 10) {
         //DARK PALETTE
         primary = "#111111"
         secondary = "#eeeeee"
         travelerStroke = "#111111"
         travelerFill = "#111111"
-        console.log("Dark Palette (15% Probability of Occurrence Among 10 Available Palettes)")
+    
+        featurePalette="Dark Palette"
+
     } else if (n > 10 && n <= 15) {
         //EMERALD PALETTE
         primary = "#127475"
         secondary = "#F5DFBB"
         travelerStroke = "#111111"
         travelerFill = "#127457"
-        console.log("Emerald Palette (6% Probability of Occurrence Among 10 Available Palettes)")
+    
+        featurePalette="Emerald Palette"
     } else if (n > 15 && n <= 20) {
         //CREAM PALETTE
         primary = "#8447FF"
         secondary = "#c4c0ba"
         travelerStroke = "#111111"
         travelerFill = "#111111"
-        console.log("Cream Palette (15% Probability of Occurrence Among 10 Available Palettes)")
+    
+        featurePalette="Cream Palette"
+    
     } else if (n > 20 && n <= 25) {
         //SKY PALETTE
         primary = "#eeeeee"
-        secondary = "#86BBD8"
+        secondary = "#7baac4"
         travelerStroke = "#111111"
         travelerFill = "#111111"
-        console.log("Sky Palette (12% Probability of Occurrence Among 10 Available Palettes)")
+
+        featurePalette="Sky Palette"
+    
     } else if (n > 25 && n <= 30) {
         //ROSE PALETTE
         primary = "#eeeeee"
         secondary = "#b27077"
         travelerStroke = "#eeeeee"
         travelerFill = "#eeeeee"
-        console.log("Rose Palette (12% Probability of Occurrence Among 10 Available Palettes)")
+
+        featurePalette="Rose Palette"
+
+
     } else if (n > 30 && n <= 35) {
         //CLOUD PALETTE
         primary = "#B8C7C4"
         secondary = "#435060"
         travelerStroke = "#111111"
         travelerFill = "#111111"
-        console.log("Cloud Palette (12% Probability of Occurrence Among 10 Available Palettes)")
+        
+        featurePalette="Overcast Palette"
+
+        
     } else if (n > 35 && n <= 40) {
         //STEEL PALETTE
         primary = "#435060"
         secondary = "#CDD1C4"
         travelerStroke = "#111111"
         travelerFill = "#111111"
-        console.log("Steel Palette (12% Probability of Occurrence Among 10 Available Palettes)")
+
+        featurePalette="Steel Palette"
+
     } else if (n > 40 && n <= 45) {
         //JASMINE PALETTE
         primary = "#001427"
         secondary = "#F4D58D"
         travelerStroke = "#111111"
         travelerFill = "#111111"
-        console.log("Jasmine Palette (12% Probability of Occurrence Among 10 Available Palettes)")
+
+        featurePalette="Jasmine Palette"
+
     } else if (n > 45 && n <= 50) {
         //TERMINAL PALETTE
         primary = "#41FF00"
         secondary = "black"
         travelerStroke = "#41FF00"
         travelerFill = "#41FF00"
-        console.log("Terminal Palette (2% Probability of Occurrence Among 10 Available Palettes)")
+
+        featurePalette="Jasmine Palette"
+
     } else if (n > 50 && n <= 55) {
         primary = "#ED8B8A"
         secondary = "#0A2044"
         travelerStroke = "#BE00FF"
         travelerFill = "#BE00FF"
-        console.log("BUBBLEGUM PALETTE")
+
+        featurePalette="Bubblegum Palette"
+
     } else if (n > 55 && n <= 60) {
         primary = "#BE00FF"
         secondary = "#FFFFFF"
         travelerStroke = "#BE00FF"
         travelerFill = "#BE00FF"
-        console.log("PINK & GREEN")
+
+        featurePalette="Neon Palette"
+
     } else if (n > 60 && n <= 65) {
         primary = "#111111"
         secondary = "#4D8F88"
         travelerStroke = "#111111"
         travelerFill = "#111111"
-        console.log("ICE PALETTE")
+
+        featurePalette="Ice Palette"
+
     } else if (n > 65 && n <= 70) {
         primary = "#ffebd8"
         secondary = "#7BB800"
         travelerStroke = "#7BB800"
         travelerFill = "#ffebd8"
-        console.log("SLIME PALETTE")
+
+        featurePalette="Slime Palette"
     } else if (n > 70 && n <= 75) {
         primary = "#47383B"
         secondary = "#BCAF9F"
         travelerStroke = "#BCAF9F"
         travelerFill = "#BCAF9F"
-        console.log("ADOBE Palette (2% Probability of Occurrence Among 10 Available Palettes)")
+
+        featurePalette="Adobe Palette"
+
     } else if (n > 75 && n <= 80) {
         primary = "#BCAF9F"
         secondary = "#322E3B"
         travelerStroke = "#322E3B"
         travelerFill = "#322E3B"
-        console.log("MUTED VIOLET Palette (2% Probability of Occurrence Among 10 Available Palettes)")
+       
+        featurePalette="Muted Violet Palette"
+
+
     } else if (n > 80 && n <= 85) {
         primary = "#ffebd8"
         secondary = "#0b2a72"
         travelerStroke = "#41FF00"
         travelerFill = "#41FF00"
-        console.log("TERMINAL BLUE Palette (2% Probability of Occurrence Among 10 Available Palettes)")
-    } else {
-        primary = "#794427"
-        secondary = "#111111"
+
+        featurePalette="Terminal Blue Palette"
+        
+    } else if (n > 85 && n <= 90){
+        primary = "#111111"
+        secondary = "#F2B7C6"
         travelerStroke = "#41FF00"
         travelerFill = "#41FF00"
-        console.log("Burnt Orange Palette (2% Probability of Occurrence Among 10 Available Palettes)")
+
+        featurePalette="Unicorn Palette"
+
+    } else {
+        primary = "#111111"
+        secondary = "#FCEA08"
+        travelerStroke = "#111111"//"#41FF00"
+        travelerFill = "#111111"
+
+        featurePalette="Bumblebee Palette"
+
     }
     
+    features.push(featurePalette)
 
+//#FCEA08
 
 
 let palette = [primary, secondary, travelerStroke, travelerFill]
@@ -318,10 +384,8 @@ function drawAvatar() {
 let t
 t = 0
 
-
-
+//#endregion
 function drawImage() {
-
     var x1 = width * (noise(t + 100 * multiplier));
     var x2 = width * (noise(t + 200 * multiplier));
     var x3 = width * (noise(t + 300 * multiplier));
@@ -330,7 +394,6 @@ function drawImage() {
     var x6 = width * (noise(t + 600 * multiplier));
     var x7 = width * (noise(t + 700 * multiplier));
     var x8 = width * (noise(t + 800 * multiplier));
-
     var y1 = height * (noise(t + 900 * multiplier));
     var y2 = height * (noise(t + 1000 * multiplier));
     var y3 = height * (noise(t + 1100 * multiplier));
@@ -350,11 +413,10 @@ function drawImage() {
     }
 
     let brushID = Math.floor(random() * 14);
-
+    
     function brush0() {
         //SMOKY ORB BRUSH
         setImageStroke()
-
         for (let i = 0; i < 15; i++) {
             baseSize = 200 * multiplier
             waveTypeSpeed = Math.cos(millis() * 0.001)
@@ -366,8 +428,6 @@ function drawImage() {
                 baseSize + waveTypeSpeed * waveSize + motionBlur)
 
         }
-
-
     }
 
     function brush1() {
@@ -429,7 +489,7 @@ function drawImage() {
 
         for (let i = 0; i < 20; i++) {
             baseSize = 0 * multiplier
-            waveTypeSpeed = Math.tan(millis() * 0.001)
+            waveTypeSpeed = Math.tan(millis() * 0.0005)
             waveSize = (1000 * multiplier)
             motionBlur = ((i * 2)) * multiplier
             circle(
@@ -460,7 +520,7 @@ function drawImage() {
             waveSize = (2 * multiplier)
             motionBlur = ((i * 1)) * multiplier
             circle(
-                x1, y1, x4, y4
+                x1, y1, x4
             )
         }
     }
@@ -750,6 +810,7 @@ function drawImage() {
     noFill()
     brushStroke[brushID]()
     t += random(0.001, 0.005);
+    
 }
 
 let avatarSeed = Math.floor(Math.random() * 999) + 1;
@@ -783,6 +844,7 @@ function draw() {
     drawAvatar()
 }
 
+//#region 
 function drawGrid() {
     noFill()
     for (let r = 0; r < 20; r++)
@@ -812,3 +874,7 @@ function revertShadowContext() {
 - push traits to feature array
 - shadowContext on circle not layered correctly
 */
+
+
+//#endregion 
+//console.log(features)
