@@ -122,81 +122,131 @@ function drawCircuitGrid() {
 function setPalette() {
     let n = Math.floor(Math.random() * 99) + 1;
     let primary, secondary, travelerStroke, travelerFill
-
-    if (n <= 2) {
+    if (n <= 5) {
         //LIGHT PALETTE
         primary = "#eeeeee"
         secondary = "#111111"
         travelerStroke = "#111111"
         travelerFill = "#eeeeee"
         console.log("Light Palette (2% Probability of Occurrence Among 10 Available Palettes)")
-    } else if (n > 2 && n < 17) {
+    } else if (n > 5 && n <= 10) {
         //DARK PALETTE
         primary = "#111111"
         secondary = "#eeeeee"
         travelerStroke = "#111111"
         travelerFill = "#111111"
         console.log("Dark Palette (15% Probability of Occurrence Among 10 Available Palettes)")
-    } else if (n > 17 && n <= 23) {
+    } else if (n > 10 && n <= 15) {
         //EMERALD PALETTE
         primary = "#127475"
         secondary = "#F5DFBB"
         travelerStroke = "#111111"
         travelerFill = "#127457"
         console.log("Emerald Palette (6% Probability of Occurrence Among 10 Available Palettes)")
-    } else if (n > 23 && n <= 38) {
+    } else if (n > 15 && n <= 20) {
         //CREAM PALETTE
         primary = "#8447FF"
         secondary = "#c4c0ba"
         travelerStroke = "#111111"
         travelerFill = "#111111"
         console.log("Cream Palette (15% Probability of Occurrence Among 10 Available Palettes)")
-    } else if (n > 38 && n <= 50) {
+    } else if (n > 20 && n <= 25) {
         //SKY PALETTE
         primary = "#eeeeee"
         secondary = "#86BBD8"
         travelerStroke = "#111111"
         travelerFill = "#111111"
         console.log("Sky Palette (12% Probability of Occurrence Among 10 Available Palettes)")
-    } else if (n > 50 && n <= 62) {
+    } else if (n > 25 && n <= 30) {
         //ROSE PALETTE
         primary = "#eeeeee"
         secondary = "#b27077"
         travelerStroke = "#eeeeee"
         travelerFill = "#eeeeee"
         console.log("Rose Palette (12% Probability of Occurrence Among 10 Available Palettes)")
-    } else if (n > 62 && n <= 74) {
+    } else if (n > 30 && n <= 35) {
         //CLOUD PALETTE
         primary = "#B8C7C4"
         secondary = "#435060"
         travelerStroke = "#111111"
         travelerFill = "#111111"
         console.log("Cloud Palette (12% Probability of Occurrence Among 10 Available Palettes)")
-    } else if (n > 74 && n <= 86) {
+    } else if (n > 35 && n <= 40) {
         //STEEL PALETTE
         primary = "#435060"
         secondary = "#CDD1C4"
         travelerStroke = "#111111"
         travelerFill = "#111111"
         console.log("Steel Palette (12% Probability of Occurrence Among 10 Available Palettes)")
-    } else if (n > 86 && n <= 98) {
+    } else if (n > 40 && n <= 45) {
         //JASMINE PALETTE
         primary = "#001427"
         secondary = "#F4D58D"
         travelerStroke = "#111111"
         travelerFill = "#111111"
         console.log("Jasmine Palette (12% Probability of Occurrence Among 10 Available Palettes)")
-    } else {
+    } else if (n > 45 && n <= 50) {
         //TERMINAL PALETTE
-        primary = "#111111"
-        secondary = "#41FF00"
+        primary = "#41FF00"
+        secondary = "black"
         travelerStroke = "#41FF00"
         travelerFill = "#41FF00"
         console.log("Terminal Palette (2% Probability of Occurrence Among 10 Available Palettes)")
+    } else if (n > 50 && n <= 55) {
+        primary = "#ED8B8A"
+        secondary = "#0A2044"
+        travelerStroke = "#BE00FF"
+        travelerFill = "#BE00FF"
+        console.log("BUBBLEGUM PALETTE")
+    } else if (n > 55 && n <= 60) {
+        primary = "#BE00FF"
+        secondary = "#FFFFFF"
+        travelerStroke = "#BE00FF"
+        travelerFill = "#BE00FF"
+        console.log("PINK & GREEN")
+    } else if (n > 60 && n <= 65) {
+        primary = "#111111"
+        secondary = "#4D8F88"
+        travelerStroke = "#111111"
+        travelerFill = "#111111"
+        console.log("ICE PALETTE")
+    } else if (n > 65 && n <= 70) {
+        primary = "#ffebd8"
+        secondary = "#7BB800"
+        travelerStroke = "#7BB800"
+        travelerFill = "#ffebd8"
+        console.log("SLIME PALETTE")
+    } else if (n > 70 && n <= 75) {
+        primary = "#47383B"
+        secondary = "#BCAF9F"
+        travelerStroke = "#BCAF9F"
+        travelerFill = "#BCAF9F"
+        console.log("ADOBE Palette (2% Probability of Occurrence Among 10 Available Palettes)")
+    } else if (n > 75 && n <= 80) {
+        primary = "#BCAF9F"
+        secondary = "#322E3B"
+        travelerStroke = "#322E3B"
+        travelerFill = "#322E3B"
+        console.log("MUTED VIOLET Palette (2% Probability of Occurrence Among 10 Available Palettes)")
+    } else if (n > 80 && n <= 85) {
+        primary = "#ffebd8"
+        secondary = "#0b2a72"
+        travelerStroke = "#41FF00"
+        travelerFill = "#41FF00"
+        console.log("TERMINAL BLUE Palette (2% Probability of Occurrence Among 10 Available Palettes)")
+    } else {
+        primary = "#794427"
+        secondary = "#111111"
+        travelerStroke = "#41FF00"
+        travelerFill = "#41FF00"
+        console.log("Burnt Orange Palette (2% Probability of Occurrence Among 10 Available Palettes)")
     }
+    
 
-    let palette = [primary, secondary, travelerStroke, travelerFill]
-    return palette
+
+
+let palette = [primary, secondary, travelerStroke, travelerFill]
+return palette
 }
 
 let palette = setPalette()
@@ -379,7 +429,7 @@ function drawImage() {
 
         for (let i = 0; i < 20; i++) {
             baseSize = 0 * multiplier
-            waveTypeSpeed = Math.tan(millis() * 0.0005)
+            waveTypeSpeed = Math.tan(millis() * 0.001)
             waveSize = (1000 * multiplier)
             motionBlur = ((i * 2)) * multiplier
             circle(
@@ -406,7 +456,7 @@ function drawImage() {
                 x3,
                 y3 + baseSize + waveTypeSpeed * waveSize + motionBlur)
             baseSize = 0 * multiplier
-            waveTypeSpeed = Math.cos(millis() * 0.01)
+            waveTypeSpeed = Math.cos(millis() * 0.001)
             waveSize = (2 * multiplier)
             motionBlur = ((i * 1)) * multiplier
             circle(
@@ -514,7 +564,12 @@ function drawImage() {
                 x2,
                 y2,
                 baseSize + waveTypeSpeed * waveSize + motionBlur)
-
+                ellipse(
+                    x3,
+                    y3,
+                    baseSize + waveTypeSpeed * waveSize + motionBlur)
+    
+            
         }
 
     }
@@ -522,7 +577,7 @@ function drawImage() {
     function brush9() {
         //CLOTH FLAME BRUSH
         setImageStroke()
-        
+
 
         for (let i = 0; i < 10; i++) {
             baseSize = 100 * multiplier
@@ -560,7 +615,7 @@ function drawImage() {
 
     function brush10() {
         setImageStroke()
-        
+
         //SKELETON BRUSH - CIRCLE
         for (let i = 0; i < 15; i++) {
             baseSize = 100 * multiplier
@@ -592,12 +647,12 @@ function drawImage() {
                 y2,
                 x3,
                 y3 + baseSize + waveTypeSpeed * waveSize + motionBlur)
-            }
+        }
     }
 
     function brush11() {
         setImageStroke()
-        
+
         //SKELETON BRUSH - SQUARE
         for (let i = 0; i < 15; i++) {
             baseSize = 0 * multiplier
@@ -608,10 +663,14 @@ function drawImage() {
                 x1,
                 y1,
                 baseSize + waveTypeSpeed * waveSize + motionBlur)
+                waveTypeSpeed = Math.cos(millis() * 0.0001)
+
             square(
                 x2,
                 y2,
                 baseSize + waveTypeSpeed * waveSize + motionBlur)
+                waveTypeSpeed = Math.cos(millis() * 0.0005)
+
             square(
                 x3,
                 y3,
@@ -629,7 +688,7 @@ function drawImage() {
                 y2,
                 x3,
                 y3 + baseSize + waveTypeSpeed * waveSize + motionBlur)
-            }
+        }
     }
 
     function brush12() {
@@ -669,239 +728,6 @@ function drawImage() {
         brush2()
     }
 
-    /* OLD brushes
-    function brush0() {
-        setImageStroke()
-
-        for (let i = 0; i < 15; i++) {
-            baseSize = 200 * multiplier
-            waveTypeSpeed = Math.cos(millis() * 0.001)
-            waveSize = (200 * multiplier)
-            motionBlur = ((i * 1.1)) * multiplier
-            circle(
-                x1,
-                y1,
-                baseSize + waveTypeSpeed * waveSize + motionBlur)
-            baseSize = 0
-            waveTypeSpeed = Math.tan(millis() * 0.001)
-            waveSize = 0
-            motionBlur = ((i * 1) * multiplier)
-            ellipse(
-                x1,
-                y1,
-                baseSize + waveTypeSpeed * waveSize + motionBlur
-            )
-        }
-        
-    }
-
-    function brush1() {
-        setImageStroke()
-
-        
-        for (let i = 0; i < 20; i++) {
-            baseSize = 0 * multiplier
-            waveTypeSpeed = Math.cos(millis() * 0.001)
-            waveSize = (500 * multiplier)
-            motionBlur = ((i * 2)) * multiplier
-            circle(
-                x1,
-                y1,
-                baseSize + waveTypeSpeed * waveSize + motionBlur)
-            baseSize = 0
-            waveTypeSpeed = Math.tan(millis() * 0.01)
-            waveSize = 20 * multiplier
-            motionBlur = ((i * 1) * multiplier)
-            
-        }
-        
-    }
-
-    function brush2() {
-        setImageStroke()
-
-        for (let i = 0; i < 20; i++) {
-            baseSize = 0 * multiplier
-            waveTypeSpeed = Math.tan(millis() * 0.0005)
-            waveSize = (400 * multiplier)
-            motionBlur = ((i * 1.1)) * multiplier
-            circle(
-                x1,
-                y1,
-                baseSize + waveTypeSpeed * waveSize + motionBlur)
-
-        }
-    }
-
-    function brush3() {
-        setImageStroke()
-        
-        for (let i = 0; i < 10; i++) {
-            baseSize = 10 * multiplier
-            waveTypeSpeed = Math.cos(millis() * 0.001)
-            waveSize = (1500 * multiplier) + Math.tan(millis() * 0.0001)
-            motionBlur = ((i * 5)) * multiplier
-
-            circle(
-                x1,
-                y1,
-                baseSize + waveTypeSpeed * waveSize + motionBlur
-            )
-            baseSize = 0 * multiplier
-            waveTypeSpeed = Math.cos(millis() * 0.005)
-            waveSize = (50 * multiplier) + Math.tan(millis() * 0.005)
-            motionBlur = ((i * 1)) * multiplier
-
-            square(
-                x2,
-                y2,
-                baseSize + waveTypeSpeed * waveSize + motionBlur
-            )
-
-        }
-    }
-
-    function brush4() {
-        setImageStroke()
-
-        for (let i = 0; i < 20; i++) {
-            baseSize = 0 * multiplier
-            waveTypeSpeed = Math.sin(millis() * 0.1)
-            waveSize = (1000 * multiplier) / waveTypeSpeed
-            motionBlur = ((i * 1.1)) * multiplier
-
-            triangle(
-                x1 + motionBlur,
-                y1 + motionBlur,
-                x2 + motionBlur, y2 + motionBlur, x3 + motionBlur, y3 + motionBlur,
-                baseSize + waveTypeSpeed * waveSize + motionBlur
-            )
-
-        }
-    }
-
-    function brush5() {
-        setImageStroke()
-
-        for (let i = 0; i < 10; i++) {
-            baseSize = 0 * multiplier
-            waveTypeSpeed = Math.sin(millis() * 0.001)
-            waveSize = (20 * multiplier)
-            motionBlur = ((i * 8)) * multiplier
-            bezier(
-                x1, y1,
-                x2, y2,
-                x3, y3,
-                x1, y1 + waveTypeSpeed * waveSize + motionBlur
-            )
-        }
-    }
-
-    function brush6() {
-        setImageStroke()
-
-        for (let i = 0; i < 15; i++) {
-            baseSize = 0 * multiplier
-            waveTypeSpeed = Math.sin(millis() * 0.0005)
-            waveSize = (800 * multiplier)
-            motionBlur = ((i * 1)) * multiplier
-            circle(
-                x1,
-                y1,
-                baseSize + waveTypeSpeed * waveSize + motionBlur)
-        }
-    }
-
-    function brush7() {
-        setImageStroke()
-
-        for (let i = 0; i < 15; i++) {
-            baseSize = 0 * multiplier
-            waveTypeSpeed = Math.tan(millis() * 0.0005)
-            waveSize = (400 * multiplier)
-            motionBlur = ((i * 1.1)) * multiplier
-            square(
-                x1,
-                y1,
-                baseSize + waveTypeSpeed * waveSize + motionBlur)
-            circle(
-                x1,
-                y1,
-                (baseSize + waveTypeSpeed * waveSize + motionBlur) / 2
-            )
-
-        }
-
-    }
-
-    function brush8() {
-        setImageStroke()
-
-        for (let i = 0; i < 15; i++) {
-            baseSize = 0 * multiplier
-            waveTypeSpeed = Math.tan(millis() * 0.0005)
-            waveSize = (200 * multiplier) - waveTypeSpeed
-            motionBlur = ((i * 1.1)) * multiplier + waveTypeSpeed
-            circle(
-                x1,
-                y1,
-                baseSize + waveTypeSpeed * waveSize + motionBlur)
-        }
-
-    }
-
-    function brush9() {
-        setImageStroke()
-
-        for (let i = 0; i < 10; i++) {
-            baseSize = 0 * multiplier
-            waveTypeSpeed = Math.tan(millis() * 0.01)
-            waveSize = (19 * multiplier)
-            motionBlur = ((i * 1.1)) * multiplier
-            square(
-                x1,
-                y1,
-                baseSize + waveTypeSpeed * waveSize + motionBlur)
-            line(
-                x1,
-                y1,
-                x4,
-                y4
-            )
-
-        }
-
-    }
-
-    function brush10() {
-        brush4()
-        brush1()
-    }
-
-    function brush11() {
-
-        brush3()
-        brush1()
-    }
-
-    function brush12() {
-
-        brush7()
-        brush6()
-    }
-
-    function brush13() {
-
-        brush7()
-        brush5()
-    }
-
-    function brush14() {
-
-        brush0()
-        brush2()
-    }
-*/
     let brushStroke = [
         brush0,
         brush1,
@@ -919,8 +745,6 @@ function drawImage() {
         brush13,
         brush14,
     ]
-
-    //edit 8 & 9 & maybe 14
 
     stroke(secondary)
     noFill()
@@ -944,7 +768,6 @@ function draw() {
     strokeWeight(10 * multiplier)
 
     circle(width - 360 * multiplier, height - 360 * multiplier, width / 4)
-
     if (frameCount < 1) {
         setShadowContext()
         noFill()
@@ -955,9 +778,9 @@ function draw() {
         circle(width - 360 * multiplier, height - 360 * multiplier, width / 4)
     }
     revertShadowContext()
+
     randomSeed(avatarSeed)
     drawAvatar()
-
 }
 
 function drawGrid() {
@@ -982,9 +805,10 @@ function revertShadowContext() {
     drawingContext.shadowOffsetY = 0;
     drawingContext.shadowBlur = 0;
 }
-/* 
+
+/* //TODO:
 - 10 more color palettes
 - make art blocks compatible
 - push traits to feature array
-- brush ideas: blinking tan wave one from earlier draft, rect/tri/circ combined
+- shadowContext on circle not layered correctly
 */
