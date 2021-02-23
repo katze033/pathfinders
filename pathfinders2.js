@@ -388,7 +388,6 @@ t = 0
 
 let featureBrushStroke = Math.floor(Math.random() * 14);
 features.push('Brush Texture '+featureBrushStroke)
-console.log(features)
 function drawImage() {
     var x1 = width * (noise(t + 100 * multiplier));
     var x2 = width * (noise(t + 200 * multiplier));
@@ -877,4 +876,4 @@ function revertShadowContext() {
 
 
 //#endregion 
-//console.log(features)
+console.log(features)
