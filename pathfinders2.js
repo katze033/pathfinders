@@ -299,7 +299,7 @@ function drawImage() {
         strokeWeight(1 * multiplier)
     }
 
-    let brushID = Math.floor(random() * 12);
+    let brushID = 14 //Math.floor(random() * 14);
 
     function brush0() {
         //SMOKY ORB BRUSH
@@ -632,11 +632,42 @@ function drawImage() {
             }
     }
 
-    function brush12() {}
+    function brush12() {
+        setImageStroke()
 
-    function brush13() {}
+        for (let i = 0; i < 10; i++) {
+            baseSize = 0 * multiplier
+            waveTypeSpeed = Math.tan(millis() * 0.1)
+            waveSize = (10 * multiplier)
+            motionBlur = ((i * 1)) * multiplier
+            square(
+                x1,
+                y1,
+                baseSize + waveTypeSpeed * waveSize + motionBlur)
+            square(
+                x2,
+                y2,
+                baseSize + waveTypeSpeed * waveSize + motionBlur)
+            square(
+                x3,
+                y3,
+                baseSize + waveTypeSpeed * waveSize + motionBlur)
+            square(
+                x4,
+                y4,
+                baseSize + waveTypeSpeed * waveSize + motionBlur)
+        }
+    }
 
-    function brush14() {}
+    function brush13() {
+        brush12()
+        brush1()
+    }
+
+    function brush14() {
+        brush5()
+        brush2()
+    }
 
     /* OLD brushes
     function brush0() {
