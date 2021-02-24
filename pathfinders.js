@@ -21,7 +21,8 @@
 			let seed = parseInt(tokenData.hashes[0].slice(48,64),16);
 
       let decPairs = hashPairs.map(x => { return parseInt(x, 16); });
- //GLOBAL VAR
+
+      //GLOBAL VAR
  var multiplier;
  var cnv
  var gridArea = 60
@@ -67,6 +68,8 @@
 
  function setGridSize() {
      let featuresGridSize
+     
+     //artblocksSeed
      let n = random(0, 100)
      let rMax, cMax
 
@@ -121,6 +124,7 @@
      for (let r = 0; r < rMax; r++) {
          for (let c = 0; c < cMax; c++) {
              let x1, y1, x2, y2, x, y, d
+             //artblocksSeed
              let n = random(0, 3)
              if (n < 1.5) {
                  x1 = 0 + (c * gridArea) * multiplier
@@ -147,6 +151,7 @@
 
 
  function setPalette() {
+     //artblocksSeed
      let n = Math.floor(Math.random() * 99) + 1;
      let primary, secondary, travelerStroke, travelerFill, featurePalette
 
@@ -321,7 +326,9 @@
      let x1, y1, x2, y2
 
      function drawAvatarShapes() {
+              //artblocksSeed
          for (let i = 0; i < random(2, 16); i++) {
+                  //artblocksSeed
              n = random(0, 99)
              if (n < 50) {
                  blendMode(DIFFERENCE)
@@ -329,23 +336,36 @@
                  blendMode(SOFT_LIGHT)
              }
              rectMode(CENTER)
+                  //artblocksSeed
+
              strokeWeight(random(1, 12) * multiplier)
              stroke(travelerStroke)
              fill(travelerFill)
+
+            //artblocksSeed
+            //artblocksSeed
+            //artblocksSeed
+            //artblocksSeed
+            //artblocksSeed
              x1 = random(1920 * multiplier, 2225 * multiplier)
              y1 = random(height - 300 * multiplier, height - 480 * multiplier)
              x2 = random(25 * multiplier, 75 * multiplier)
              y2 = random(25 * multiplier, 75 * multiplier)
              let c = random(0 * multiplier, 25 * multiplier)
+             
              rect(x1, y1, x2, y2, c)
              rect(4080 * multiplier - x1, y1, x2, y2, c)
          }
      }
 
      function drawAvatarLines() {
-         for (let i = 0; i < random(1, 10); i++) { //1,10
-             strokeWeight(random(1, 3) * multiplier)
+              //artblocksSeed
 
+         for (let i = 0; i < random(1, 10); i++) { //1,10
+                 //artblocksSeed
+             strokeWeight(random(1, 3) * multiplier)
+     //artblocksSeed
+     //artblocksSeed
              let x1 = random(1820 * multiplier, 2040 * multiplier)
              let y1 = random(1880 * multiplier, 2040 * multiplier)
              let x2 = x1
@@ -354,7 +374,10 @@
              line(4080 * multiplier - x1, y1, 4080 * multiplier - x2, y2)
              line(x1, 4080 * multiplier - y1, x2, y2)
              line(4080 * multiplier - x1, 4080 * multiplier - y1, 4080 * multiplier - x2, y2)
-             x1 = random(1840 * multiplier, 2040 * multiplier) //1820*multiplier;
+                  //artblocksSeed
+     //artblocksSeed
+
+             x1 = random(1840 * multiplier, 2040 * multiplier)
              y1 = random(1840 * multiplier, 2040 * multiplier)
              x2 = 2040 * multiplier
              y2 = y1
@@ -368,6 +391,8 @@
 
      drawAvatarShapes()
      blendMode(BLEND)
+          //artblocksSeed
+
      n = random(0, 99)
      if (n < 40) {
          stroke(secondary)
@@ -381,8 +406,10 @@
  t = 0
 
 
-
+//artblocksSeed
+//artblocksSeed
  let featurePrimaryBrushStroke = Math.floor(Math.random() * 10);
+ 
  let featureSecondaryBrushStroke = Math.floor(Math.random() * 4)
  features.push('Primary Brush Variant: ' + featurePrimaryBrushStroke)
  features.push('Secondary Brush Variant: ' + featureSecondaryBrushStroke)
@@ -717,6 +744,7 @@
          secondaryBrush3
      ]
 
+     //artblocksSeed
      t += random(0.001, 0.005);
 
 
@@ -800,6 +828,7 @@
      }
  }
 
+ //artblocksSeed
  let avatarSeed = Math.floor(Math.random() * 999) + 1;
 
  function draw() {
