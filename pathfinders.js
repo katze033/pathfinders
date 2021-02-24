@@ -7,6 +7,8 @@
  }
  tokenData.hashes = [hashString];
 
+
+ 
  // Start here for upload //
 
  let numHashes = tokenData.hashes.length;
@@ -878,4 +880,3 @@
  }
 
 
-console.log(featuresReduced)
