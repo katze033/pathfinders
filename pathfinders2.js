@@ -48,7 +48,7 @@
      } else if (state == 'on') {
          noLoop()
          state = 'paused'
-         
+
      } else if (state == 'paused') {
          background(primary)
          loop()
@@ -65,7 +65,7 @@
      if (n <= 33) {
          gridArea = 60
          rMax = 40
-         strokeWeight(3*multiplier)
+         strokeWeight(3 * multiplier)
          cMax = 40
 
          featuresGridSize = "Start Screen Grid: Small"
@@ -387,18 +387,30 @@
 
 
 
- let featureBrushStroke = Math.floor(Math.random() * 14);
- features.push('Brush Texture ' + featureBrushStroke)
+ let featurePrimaryBrushStroke = Math.floor(Math.random() * 10);
+ let featureSecondaryBrushStroke = Math.floor(Math.random() * 4)
+ features.push('Primary Brush Texture ' + featurePrimaryBrushStroke)
+ features.push('Secondary Brush Texture ' + featureSecondaryBrushStroke)
+
 
  function drawImage() {
      var x1 = width * (noise(t + 100 * multiplier));
      var x2 = width * (noise(t + 200 * multiplier));
      var x3 = width * (noise(t + 300 * multiplier));
      var x4 = width * (noise(t + 400 * multiplier));
+     var x5 = width * (noise(t + 500 * multiplier));
+     var x6 = width * (noise(t + 600 * multiplier));
+     var x7 = width * (noise(t + 700 * multiplier));
+     var x8 = width * (noise(t + 800 * multiplier));
+
      var y1 = height * (noise(t + 900 * multiplier));
      var y2 = height * (noise(t + 1000 * multiplier));
      var y3 = height * (noise(t + 1100 * multiplier));
      var y4 = height * (noise(t + 1200 * multiplier));
+     var y5 = height * (noise(t + 130 * multiplier));
+     var y6 = height * (noise(t + 1400 * multiplier));
+     var y7 = height * (noise(t + 1500 * multiplier));
+     var y8 = height * (noise(t + 1600 * multiplier));
 
      let baseSize, waveTypeSpeed, waveSize, motionBlur
 
@@ -409,10 +421,11 @@
          strokeWeight(1 * multiplier)
      }
 
-     let brushID = featureBrushStroke;
-     
+     let brushID = featurePrimaryBrushStroke;
+     let secondaryBrushID = featureSecondaryBrushStroke
+
      function brush0() {
-         //SMOKY ORB BRUSH
+         //BULB
          setImageStroke()
          for (let i = 0; i < 15; i++) {
              baseSize = 200 * multiplier
@@ -428,7 +441,7 @@
      }
 
      function brush1() {
-         //SMOKY ORB CHAIN BRUSH
+         //SQUARE WITHIN BULB
          setImageStroke()
 
          for (let i = 0; i < 15; i++) {
@@ -440,26 +453,26 @@
                  x1,
                  y1,
                  baseSize + waveTypeSpeed * waveSize + motionBlur)
-             baseSize = 0 * multiplier
-             waveTypeSpeed = Math.cos(millis() * 0.005)
-             waveSize = (40 * multiplier)
-             motionBlur = ((i * 1)) * multiplier
-             ellipse(
-                 x2,
-                 y2,
+             baseSize = 100 * multiplier
+             waveTypeSpeed = Math.cos(millis() * 0.001)
+             waveSize = (250 * multiplier)
+             motionBlur = ((i * 1.1)) * multiplier
+             square(
+                 x1,
+                 y1,
                  baseSize + waveTypeSpeed * waveSize + motionBlur)
 
          }
      }
 
      function brush2() {
-         //SPARK BRUSH
          setImageStroke()
 
-         for (let i = 0; i < 10; i++) {
-             baseSize = 0 * multiplier
+         //SKELETON BRUSH - CIRCLE (STATIC)
+         for (let i = 0; i < 15; i++) {
+             baseSize = 100 * multiplier
              waveTypeSpeed = Math.tan(millis() * 0.01)
-             waveSize = (10 * multiplier)
+             waveSize = (0 * multiplier)
              motionBlur = ((i * 2)) * multiplier
              circle(
                  x1,
@@ -473,32 +486,63 @@
                  x3,
                  y3,
                  baseSize + waveTypeSpeed * waveSize + motionBlur)
-             circle(
-                 x4,
-                 y4,
-                 baseSize + waveTypeSpeed * waveSize + motionBlur)
+
+
+             baseSize = 0 * multiplier
+             waveTypeSpeed = Math.cos(millis() * 0.005)
+             waveSize = (40 * multiplier)
+             motionBlur = ((i * 1)) * multiplier
+             triangle(
+                 x1,
+                 y1,
+                 x2,
+                 y2,
+                 x3,
+                 y3 + baseSize + waveTypeSpeed * waveSize + motionBlur)
          }
+
      }
 
      function brush3() {
-         //WISP BRUSH
          setImageStroke()
 
-         for (let i = 0; i < 20; i++) {
+         //SKELETON BRUSH - CIRCLE (ACTIVE)
+         for (let i = 0; i < 15; i++) {
              baseSize = 0 * multiplier
-             waveTypeSpeed = Math.tan(millis() * 0.0005)
-             waveSize = (1000 * multiplier)
-             motionBlur = ((i * 2)) * multiplier
+             waveTypeSpeed = Math.cos(millis() * 0.001)
+             waveSize = (100 * multiplier)
+             motionBlur = ((i * 1)) * multiplier
              circle(
                  x1,
                  y1,
                  baseSize + waveTypeSpeed * waveSize + motionBlur)
+             circle(
+                 x2,
+                 y2,
+                 baseSize + waveTypeSpeed * waveSize + motionBlur)
+             circle(
+                 x3,
+                 y3,
+                 baseSize + waveTypeSpeed * waveSize + motionBlur)
+
+
+             baseSize = 0 * multiplier
+             waveTypeSpeed = Math.cos(millis() * 0.005)
+             waveSize = (40 * multiplier)
+             motionBlur = ((i * 2)) * multiplier
+             triangle(
+                 x1,
+                 y1,
+                 x2,
+                 y2,
+                 x3,
+                 y3 + baseSize + waveTypeSpeed * waveSize + motionBlur)
          }
-         brush2()
+
      }
 
      function brush4() {
-         //CLOUD  with line in Center
+         //ROSE
          setImageStroke()
 
          for (let i = 0; i < 20; i++) {
@@ -515,10 +559,10 @@
                  y3 + baseSize + waveTypeSpeed * waveSize + motionBlur)
              baseSize = 0 * multiplier
              waveTypeSpeed = Math.cos(millis() * 0.001)
-             waveSize = (2 * multiplier)
+             waveSize = (20 * multiplier)
              motionBlur = ((i * 1)) * multiplier
              circle(
-                 x1, y1, x4
+                 x1, y1, x4 + baseSize + waveTypeSpeed * waveSize + motionBlur
              )
          }
      }
@@ -549,45 +593,31 @@
      }
 
      function brush6() {
-         //circle within square
+         //diamond cloth
          setImageStroke()
 
-         for (let i = 0; i < 20; i++) {
-             baseSize = 200 * multiplier
-             waveTypeSpeed = Math.cos(millis() * 0.001)
-             waveSize = (200 * multiplier)
+         for (let i = 0; i < 15; i++) {
+             baseSize = 0 * multiplier
+             waveTypeSpeed = Math.tan(millis() * 0.01)
+             waveSize = (50 * multiplier)
              motionBlur = ((i * 2)) * multiplier
              circle(
                  x1,
                  y1,
                  baseSize + waveTypeSpeed * waveSize + motionBlur)
-             baseSize = 0 * multiplier
-             waveTypeSpeed = Math.tan(millis() * 0.001)
-             waveSize = (200 * multiplier)
-             motionBlur = ((i * 1)) * multiplier
-             square(
-                 x1, y1, baseSize + waveTypeSpeed * waveSize + motionBlur
-             )
-         }
-     }
-
-     function brush7() {
-         //triangle and circle
-         setImageStroke()
-
-         for (let i = 0; i < 15; i++) {
-             baseSize = 200 * multiplier
-             waveTypeSpeed = Math.cos(millis() * 0.001)
-             waveSize = (0 * multiplier)
-             motionBlur = ((i * 1)) * multiplier
              circle(
-                 x1,
-                 y1,
+                 x2,
+                 y2,
+                 baseSize + waveTypeSpeed * waveSize + motionBlur)
+             circle(
+                 x3,
+                 y3,
                  baseSize + waveTypeSpeed * waveSize + motionBlur)
 
+
              baseSize = 0 * multiplier
-             waveTypeSpeed = Math.cos(millis() * 0.0001)
-             waveSize = (1000 * multiplier)
+             waveTypeSpeed = Math.cos(millis() * 0.005)
+             waveSize = (40 * multiplier)
              motionBlur = ((i * 1)) * multiplier
              triangle(
                  x1,
@@ -595,41 +625,52 @@
                  x2,
                  y2,
                  x3,
+                 y3 + baseSize + waveTypeSpeed * waveSize + motionBlur)
+         }
+     }
+
+     function brush7() {
+         //WISP BRUSH
+         setImageStroke()
+
+         for (let i = 0; i < 20; i++) {
+             baseSize = 0 * multiplier
+             waveTypeSpeed = Math.tan(millis() * 0.0003)
+             waveSize = (500 * multiplier)
+             motionBlur = ((i * 2)) * multiplier
+             circle(
+                 x1,
+                 y1,
                  baseSize + waveTypeSpeed * waveSize + motionBlur)
          }
      }
 
 
      function brush8() {
-         //GEM CLOUD AND CHAIN STROKE
          setImageStroke()
 
-         for (let i = 0; i < 15; i++) {
-             baseSize = 200 * multiplier
-             waveTypeSpeed = Math.cos(millis() * 0.0005)
-             waveSize = (1000 * multiplier)
-             motionBlur = ((i * 100)) * multiplier
-             circle(
+         for (let i = 0; i < 20; i++) {
+             baseSize = 0 * multiplier
+             waveTypeSpeed = Math.sin(millis() * 0.001)
+             waveSize = (20 * multiplier)
+             motionBlur = ((i * 1.1)) * multiplier
+             line(
                  x1,
                  y1,
-                 baseSize + waveTypeSpeed * waveSize - motionBlur)
-
-             baseSize = 0 * multiplier
-             waveTypeSpeed = Math.cos(millis() * 0.005)
-             waveSize = (40 * multiplier)
-             motionBlur = ((i * 1)) * multiplier
-             ellipse(
                  x2,
-                 y2,
-                 baseSize + waveTypeSpeed * waveSize + motionBlur)
-             ellipse(
+                 y2 + baseSize + waveTypeSpeed * waveSize + motionBlur)
+             line(
+                 x1,
+                 y1,
                  x3,
-                 y3,
-                 baseSize + waveTypeSpeed * waveSize + motionBlur)
-
+                 y3 + baseSize + waveTypeSpeed * waveSize + motionBlur)
+             line(
+                 x1,
+                 y1,
+                 x4,
+                 y4 + baseSize + waveTypeSpeed * waveSize + motionBlur)
 
          }
-
      }
 
      function brush9() {
@@ -671,122 +712,7 @@
          }
      }
 
-     function brush10() {
-         setImageStroke()
-
-         //SKELETON BRUSH - CIRCLE
-         for (let i = 0; i < 15; i++) {
-             baseSize = 100 * multiplier
-             waveTypeSpeed = Math.tan(millis() * 0.01)
-             waveSize = (0 * multiplier)
-             motionBlur = ((i * 2)) * multiplier
-             circle(
-                 x1,
-                 y1,
-                 baseSize + waveTypeSpeed * waveSize + motionBlur)
-             circle(
-                 x2,
-                 y2,
-                 baseSize + waveTypeSpeed * waveSize + motionBlur)
-             circle(
-                 x3,
-                 y3,
-                 baseSize + waveTypeSpeed * waveSize + motionBlur)
-
-
-             baseSize = 0 * multiplier
-             waveTypeSpeed = Math.cos(millis() * 0.005)
-             waveSize = (40 * multiplier)
-             motionBlur = ((i * 1)) * multiplier
-             triangle(
-                 x1,
-                 y1,
-                 x2,
-                 y2,
-                 x3,
-                 y3 + baseSize + waveTypeSpeed * waveSize + motionBlur)
-         }
-     }
-
-     function brush11() {
-         setImageStroke()
-
-         //SKELETON BRUSH - SQUARE
-         for (let i = 0; i < 15; i++) {
-             baseSize = 0 * multiplier
-             waveTypeSpeed = Math.cos(millis() * 0.001)
-             waveSize = (250 * multiplier)
-             motionBlur = ((i * 1)) * multiplier
-             square(
-                 x1,
-                 y1,
-                 baseSize + waveTypeSpeed * waveSize + motionBlur)
-             waveTypeSpeed = Math.cos(millis() * 0.0001)
-
-             square(
-                 x2,
-                 y2,
-                 baseSize + waveTypeSpeed * waveSize + motionBlur)
-             waveTypeSpeed = Math.cos(millis() * 0.0005)
-
-             square(
-                 x3,
-                 y3,
-                 baseSize + waveTypeSpeed * waveSize + motionBlur)
-
-
-             baseSize = 0 * multiplier
-             waveTypeSpeed = Math.cos(millis() * 0.005)
-             waveSize = (40 * multiplier)
-             motionBlur = ((i * 1)) * multiplier
-             triangle(
-                 x1,
-                 y1,
-                 x2,
-                 y2,
-                 x3,
-                 y3 + baseSize + waveTypeSpeed * waveSize + motionBlur)
-         }
-     }
-
-     function brush12() {
-         setImageStroke()
-
-         for (let i = 0; i < 10; i++) {
-             baseSize = 0 * multiplier
-             waveTypeSpeed = Math.tan(millis() * 0.1)
-             waveSize = (10 * multiplier)
-             motionBlur = ((i * 1)) * multiplier
-             square(
-                 x1,
-                 y1,
-                 baseSize + waveTypeSpeed * waveSize + motionBlur)
-             square(
-                 x2,
-                 y2,
-                 baseSize + waveTypeSpeed * waveSize + motionBlur)
-             square(
-                 x3,
-                 y3,
-                 baseSize + waveTypeSpeed * waveSize + motionBlur)
-             square(
-                 x4,
-                 y4,
-                 baseSize + waveTypeSpeed * waveSize + motionBlur)
-         }
-     }
-
-     function brush13() {
-         brush12()
-         brush1()
-     }
-
-     function brush14() {
-         brush5()
-         brush2()
-     }
-
-     let brushStroke = [
+     let primaryBrushStroke = [
          brush0,
          brush1,
          brush2,
@@ -796,12 +722,14 @@
          brush6,
          brush7,
          brush8,
-         brush9,
-         brush10,
-         brush11,
-         brush12,
-         brush13,
-         brush14,
+         brush9
+     ]
+
+     let secondaryBrushStroke = [
+         secondaryBrush0,
+         secondaryBrush1,
+         secondaryBrush2,
+         secondaryBrush3
      ]
 
      t += random(0.001, 0.005);
@@ -809,43 +737,174 @@
 
      stroke(secondary)
      noFill()
-     brushStroke[brushID]()
+     primaryBrushStroke[brushID]()
+     secondaryBrushStroke[secondaryBrushID]()
+
+     function secondaryBrush0() {
+         //SPARK BRUSH
+         setImageStroke()
+
+         for (let i = 0; i < 10; i++) {
+             baseSize = 0 * multiplier
+             waveTypeSpeed = Math.tan(millis() * 0.01)
+             waveSize = (10 * multiplier)
+             motionBlur = ((i * 2)) * multiplier
+             circle(
+                 x5,
+                 y5,
+                 baseSize + waveTypeSpeed * waveSize + motionBlur)
+             circle(
+                 x6,
+                 y6,
+                 baseSize + waveTypeSpeed * waveSize + motionBlur)
+             circle(
+                 x7,
+                 y7,
+                 baseSize + waveTypeSpeed * waveSize + motionBlur)
+             circle(
+                 x8,
+                 y8,
+                 baseSize + waveTypeSpeed * waveSize + motionBlur)
+         }
+     }
+
+     function secondaryBrush1() {
+         setImageStroke()
+
+         for (let i = 0; i < 15; i++) {
+             baseSize = 0 * multiplier
+             waveTypeSpeed = Math.cos(millis() * 0.01)
+             waveSize = (20 * multiplier)
+             motionBlur = ((i * 1)) * multiplier
+             ellipse(
+                 x5,
+                 y5,
+                 baseSize + waveTypeSpeed * waveSize + motionBlur)
+             ellipse(
+                 x6,
+                 y6,
+                 baseSize + waveTypeSpeed * waveSize + motionBlur)
+             ellipse(
+                 x7,
+                 y7,
+                 baseSize + waveTypeSpeed * waveSize + motionBlur)
+             ellipse(
+                 x8,
+                 y8,
+                 baseSize + waveTypeSpeed * waveSize + motionBlur)
 
 
+         }
+     }
+     
+          function secondaryBrush2() {
+            setImageStroke()
+            for (let i = 0; i < 15; i++) {
+                 baseSize = 200 * multiplier
+                 waveTypeSpeed = Math.cos(millis() * 0.0005)
+                 waveSize = (1000 * multiplier)
+                 motionBlur = ((i * 100)) * multiplier
+                 circle(
+                     x1,
+                     y1,
+                     baseSize + waveTypeSpeed * waveSize - motionBlur)
+                 }
+          }
+          function secondaryBrush3() {
+              return 'none'
+          }
+     
+     /*//SPARK BRUSH
+              setImageStroke()
+
+              for (let i = 0; i < 10; i++) {
+                  baseSize = 0 * multiplier
+                  waveTypeSpeed = Math.tan(millis() * 0.01)
+                  waveSize = (10 * multiplier)
+                  motionBlur = ((i * 2)) * multiplier
+                  circle(
+                      x1,
+                      y1,
+                      baseSize + waveTypeSpeed * waveSize + motionBlur)
+                  circle(
+                      x2,
+                      y2,
+                      baseSize + waveTypeSpeed * waveSize + motionBlur)
+                  circle(
+                      x3,
+                      y3,
+                      baseSize + waveTypeSpeed * waveSize + motionBlur)
+                  circle(
+                      x4,
+                      y4,
+                      baseSize + waveTypeSpeed * waveSize + motionBlur)
+              } */
+
+     /*
+
+              //GEM CLOUD AND CHAIN STROKE
+              setImageStroke()
+
+              for (let i = 0; i < 15; i++) {
+                  baseSize = 200 * multiplier
+                  waveTypeSpeed = Math.cos(millis() * 0.0005)
+                  waveSize = (1000 * multiplier)
+                  motionBlur = ((i * 100)) * multiplier
+                  circle(
+                      x1,
+                      y1,
+                      baseSize + waveTypeSpeed * waveSize - motionBlur)
+
+                  baseSize = 0 * multiplier
+                  waveTypeSpeed = Math.cos(millis() * 0.005)
+                  waveSize = (40 * multiplier)
+                  motionBlur = ((i * 1)) * multiplier
+                  ellipse(
+                      x2,
+                      y2,
+                      baseSize + waveTypeSpeed * waveSize + motionBlur)
+                  ellipse(
+                      x3,
+                      y3,
+                      baseSize + waveTypeSpeed * waveSize + motionBlur)
+
+
+              }
+     */
  }
 
  let avatarSeed = Math.floor(Math.random() * 999) + 1;
 
  function draw() {
-     
-    if (frameCount<=2) {
-        setShadowContext() 
-    }
-    noFill()
+
+     if (frameCount <= 2) {
+         setShadowContext()
+     }
+     noFill()
      resetMatrix()
-         
+
      if (frameCount > 1) {
-         
+
          drawImage()
      }
      stroke(secondary)
      strokeWeight(360 * multiplier)
-     
-    rect(width / 2, height / 2, width, height)
-     
-    stroke(secondary)
-    strokeWeight(40 * multiplier)
-    //circle(width - 360 * multiplier, height - 360 * multiplier, width / 4)
-    
 
-strokeWeight(10*multiplier)
-    fill(secondary)
+     rect(width / 2, height / 2, width, height)
+
+     stroke(secondary)
+     strokeWeight(40 * multiplier)
+     //circle(width - 360 * multiplier, height - 360 * multiplier, width / 4)
+
+
+     strokeWeight(10 * multiplier)
+     fill(secondary)
      stroke(primary)
-     
+
      circle(width - 360 * multiplier, height - 360 * multiplier, width / 4)
      revertShadowContext()
 
-     
+
 
      randomSeed(avatarSeed)
      drawAvatar()
@@ -875,7 +934,11 @@ strokeWeight(10*multiplier)
      drawingContext.shadowBlur = 0;
  }
 
+console.log(features)
+
  /* //TODO:
+
+
  - make art blocks compatible
  - shadowContext on circle not layered correctly
  */
