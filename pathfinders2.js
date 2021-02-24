@@ -29,7 +29,6 @@
      multiplier = width / 2400;
      frameRate(60)
      background(primary)
-     //drawGrid()
      rectMode(CENTER)
      drawCircuitGrid()
      noLoop()
@@ -68,7 +67,7 @@
          strokeWeight(3 * multiplier)
          cMax = 40
 
-         featuresGridSize = "Start Screen Grid: Small"
+         featuresGridSize = "Start Screen Grid Size: Small"
 
 
      } else if (n > 33 && n <= 69) {
@@ -77,14 +76,14 @@
          rMax = 10
          cMax = 10
 
-         featuresGridSize = "Start Screen Grid: Medium"
+         featuresGridSize = "Start Screen Grid Size: Medium"
      } else if (n < 69 && n <= 84) {
          gridArea = 600
          strokeWeight(3 * multiplier)
          rMax = 4
          cMax = 4
 
-         featuresGridSize = "Start Screen Grid: Large"
+         featuresGridSize = "Start Screen Grid Size: Large"
      } else {
          gridArea = 1200
          strokeWeight(3 * multiplier)
@@ -143,7 +142,6 @@
      let primary, secondary, travelerStroke, travelerFill, featurePalette
 
      if (n <= 5) {
-         //LIGHT PALETTE
          primary = "#eeeeee"
          secondary = "#111111"
          travelerStroke = "#111111"
@@ -152,7 +150,6 @@
          featurePalette = "Light Palette"
 
      } else if (n > 5 && n <= 10) {
-         //DARK PALETTE
          primary = "#111111"
          secondary = "#eeeeee"
          travelerStroke = "#111111"
@@ -161,7 +158,6 @@
          featurePalette = "Dark Palette"
 
      } else if (n > 10 && n <= 15) {
-         //EMERALD PALETTE
          primary = "#127475"
          secondary = "#F5DFBB"
          travelerStroke = "#111111"
@@ -169,7 +165,6 @@
 
          featurePalette = "Emerald Palette"
      } else if (n > 15 && n <= 20) {
-         //CREAM PALETTE
          primary = "#6f3ddb"
          secondary = "#c4c0ba"
          travelerStroke = "#111111"
@@ -178,7 +173,6 @@
          featurePalette = "Cream Palette"
 
      } else if (n > 20 && n <= 25) {
-         //SKY PALETTE
          primary = "#eeeeee"
          secondary = "#7baac4"
          travelerStroke = "#111111"
@@ -187,7 +181,6 @@
          featurePalette = "Sky Palette"
 
      } else if (n > 25 && n <= 30) {
-         //ROSE PALETTE
          primary = "#eeeeee"
          secondary = "#b27077"
          travelerStroke = "#eeeeee"
@@ -197,7 +190,6 @@
 
 
      } else if (n > 30 && n <= 35) {
-         //CLOUD PALETTE
          primary = "#B8C7C4"
          secondary = "#435060"
          travelerStroke = "#111111"
@@ -207,7 +199,6 @@
 
 
      } else if (n > 35 && n <= 40) {
-         //STEEL PALETTE
          primary = "#435060"
          secondary = "#CDD1C4"
          travelerStroke = "#111111"
@@ -216,7 +207,6 @@
          featurePalette = "Steel Palette"
 
      } else if (n > 40 && n <= 45) {
-         //JASMINE PALETTE
          primary = "#001427"
          secondary = "#F4D58D"
          travelerStroke = "#111111"
@@ -225,7 +215,6 @@
          featurePalette = "Jasmine Palette"
 
      } else if (n > 45 && n <= 50) {
-         //TERMINAL PALETTE
          primary = "#41FF00"
          secondary = "black"
          travelerStroke = "#41FF00"
@@ -300,17 +289,14 @@
      } else {
          primary = "#111111"
          secondary = "#FCEA08"
-         travelerStroke = "#111111" //"#41FF00"
+         travelerStroke = "#111111"
          travelerFill = "#111111"
 
          featurePalette = "Bumblebee Palette"
 
      }
 
-     features.push(featurePalette)
-
-     //#FCEA08
-
+     features.push('Color: ' + featurePalette)
 
      let palette = [primary, secondary, travelerStroke, travelerFill]
      return palette
@@ -389,8 +375,8 @@
 
  let featurePrimaryBrushStroke = Math.floor(Math.random() * 10);
  let featureSecondaryBrushStroke = Math.floor(Math.random() * 4)
- features.push('Primary Brush Texture ' + featurePrimaryBrushStroke)
- features.push('Secondary Brush Texture ' + featureSecondaryBrushStroke)
+ features.push('Primary Brush Variant: ' + featurePrimaryBrushStroke)
+ features.push('Secondary Brush Variant: ' + featureSecondaryBrushStroke)
 
 
  function drawImage() {
@@ -425,7 +411,6 @@
      let secondaryBrushID = featureSecondaryBrushStroke
 
      function brush0() {
-         //BULB
          setImageStroke()
          for (let i = 0; i < 15; i++) {
              baseSize = 200 * multiplier
@@ -441,7 +426,6 @@
      }
 
      function brush1() {
-         //SQUARE WITHIN BULB
          setImageStroke()
 
          for (let i = 0; i < 15; i++) {
@@ -468,7 +452,6 @@
      function brush2() {
          setImageStroke()
 
-         //SKELETON BRUSH - CIRCLE (STATIC)
          for (let i = 0; i < 15; i++) {
              baseSize = 100 * multiplier
              waveTypeSpeed = Math.tan(millis() * 0.01)
@@ -506,7 +489,6 @@
      function brush3() {
          setImageStroke()
 
-         //SKELETON BRUSH - CIRCLE (ACTIVE)
          for (let i = 0; i < 15; i++) {
              baseSize = 0 * multiplier
              waveTypeSpeed = Math.cos(millis() * 0.001)
@@ -542,7 +524,6 @@
      }
 
      function brush4() {
-         //ROSE
          setImageStroke()
 
          for (let i = 0; i < 20; i++) {
@@ -568,7 +549,6 @@
      }
 
      function brush5() {
-         //DOUBLE LINE BRUSH
          setImageStroke()
 
          for (let i = 0; i < 20; i++) {
@@ -593,7 +573,6 @@
      }
 
      function brush6() {
-         //diamond cloth
          setImageStroke()
 
          for (let i = 0; i < 15; i++) {
@@ -630,7 +609,6 @@
      }
 
      function brush7() {
-         //WISP BRUSH
          setImageStroke()
 
          for (let i = 0; i < 20; i++) {
@@ -674,9 +652,7 @@
      }
 
      function brush9() {
-         //CLOTH FLAME BRUSH
          setImageStroke()
-
 
          for (let i = 0; i < 10; i++) {
              baseSize = 100 * multiplier
@@ -741,7 +717,6 @@
      secondaryBrushStroke[secondaryBrushID]()
 
      function secondaryBrush0() {
-         //SPARK BRUSH
          setImageStroke()
 
          for (let i = 0; i < 10; i++) {
@@ -796,81 +771,24 @@
 
          }
      }
-     
-          function secondaryBrush2() {
-            setImageStroke()
-            for (let i = 0; i < 15; i++) {
-                 baseSize = 200 * multiplier
-                 waveTypeSpeed = Math.cos(millis() * 0.0005)
-                 waveSize = (1000 * multiplier)
-                 motionBlur = ((i * 100)) * multiplier
-                 circle(
-                     x1,
-                     y1,
-                     baseSize + waveTypeSpeed * waveSize - motionBlur)
-                 }
-          }
-          function secondaryBrush3() {
-              return 'none'
-          }
-     
-     /*//SPARK BRUSH
-              setImageStroke()
 
-              for (let i = 0; i < 10; i++) {
-                  baseSize = 0 * multiplier
-                  waveTypeSpeed = Math.tan(millis() * 0.01)
-                  waveSize = (10 * multiplier)
-                  motionBlur = ((i * 2)) * multiplier
-                  circle(
-                      x1,
-                      y1,
-                      baseSize + waveTypeSpeed * waveSize + motionBlur)
-                  circle(
-                      x2,
-                      y2,
-                      baseSize + waveTypeSpeed * waveSize + motionBlur)
-                  circle(
-                      x3,
-                      y3,
-                      baseSize + waveTypeSpeed * waveSize + motionBlur)
-                  circle(
-                      x4,
-                      y4,
-                      baseSize + waveTypeSpeed * waveSize + motionBlur)
-              } */
+     function secondaryBrush2() {
+         setImageStroke()
+         for (let i = 0; i < 15; i++) {
+             baseSize = 200 * multiplier
+             waveTypeSpeed = Math.cos(millis() * 0.0005)
+             waveSize = (1000 * multiplier)
+             motionBlur = ((i * 100)) * multiplier
+             circle(
+                 x1,
+                 y1,
+                 baseSize + waveTypeSpeed * waveSize - motionBlur)
+         }
+     }
 
-     /*
-
-              //GEM CLOUD AND CHAIN STROKE
-              setImageStroke()
-
-              for (let i = 0; i < 15; i++) {
-                  baseSize = 200 * multiplier
-                  waveTypeSpeed = Math.cos(millis() * 0.0005)
-                  waveSize = (1000 * multiplier)
-                  motionBlur = ((i * 100)) * multiplier
-                  circle(
-                      x1,
-                      y1,
-                      baseSize + waveTypeSpeed * waveSize - motionBlur)
-
-                  baseSize = 0 * multiplier
-                  waveTypeSpeed = Math.cos(millis() * 0.005)
-                  waveSize = (40 * multiplier)
-                  motionBlur = ((i * 1)) * multiplier
-                  ellipse(
-                      x2,
-                      y2,
-                      baseSize + waveTypeSpeed * waveSize + motionBlur)
-                  ellipse(
-                      x3,
-                      y3,
-                      baseSize + waveTypeSpeed * waveSize + motionBlur)
-
-
-              }
-     */
+     function secondaryBrush3() {
+         return 'none'
+     }
  }
 
  let avatarSeed = Math.floor(Math.random() * 999) + 1;
@@ -884,7 +802,6 @@
      resetMatrix()
 
      if (frameCount > 1) {
-
          drawImage()
      }
      stroke(secondary)
@@ -894,8 +811,6 @@
 
      stroke(secondary)
      strokeWeight(40 * multiplier)
-     //circle(width - 360 * multiplier, height - 360 * multiplier, width / 4)
-
 
      strokeWeight(10 * multiplier)
      fill(secondary)
@@ -910,19 +825,6 @@
      drawAvatar()
  }
 
-
- function drawGrid() {
-     noFill()
-     for (let r = 0; r < 20; r++)
-         for (let c = 0; c < 20; c++) {
-             rect(
-                 (gridArea * c) * multiplier,
-                 (gridArea * r) * multiplier,
-                 gridArea * multiplier,
-                 gridArea * multiplier)
-         }
- }
-
  function setShadowContext() {
      drawingContext.shadowBlur = 40 * multiplier;
      drawingContext.shadowColor = secondary;
@@ -934,7 +836,7 @@
      drawingContext.shadowBlur = 0;
  }
 
-console.log(features)
+ //console.log(features)
 
  /* //TODO:
 
