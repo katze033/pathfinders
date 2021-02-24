@@ -1,17 +1,26 @@
  //ARTBLOCKS SET UP
- let tokenData = {
-     "hash": "0xb049be6ffbf1e3b28f26d6a1ad6cb110bf60ccc939a2bb18d989404888859817",
-     "tokenId": "7000118"
- }
- let hashPairs = [];
- for (let j = 0; j < 32; j++) {
-     hashPairs.push(tokenData.hash.slice(2 + (j * 2), 4 + (j * 2)));
- }
- let seed = parseInt(tokenData.hash.slice(48, 64), 16);
- let decPairs = hashPairs.map(x => {
-     return parseInt(x, 16);
- });
+ let tokenData = {};
+      let hashString = "0x";
+      for (let i = 0; i < 64; i++) {
+        let val = Math.floor(Math.random().toFixed(3) * 255);
+        hashString = hashString + val.toString(16);
+      }
+      tokenData.hashes = [hashString];
 
+      // Start here for upload //
+
+      let numHashes = tokenData.hashes.length;
+
+      let hashPairs = [];
+      for (let i = 0; i < numHashes; i++) {
+        for (let j = 0; j < 32; j++) {
+          hashPairs.push(tokenData.hashes[i].slice(2 + (j * 2), 4 + (j * 2)));
+        }
+      }
+
+			let seed = parseInt(tokenData.hashes[0].slice(48,64),16);
+
+      let decPairs = hashPairs.map(x => { return parseInt(x, 16); });
  //GLOBAL VAR
  var multiplier;
  var cnv
