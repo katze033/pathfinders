@@ -845,7 +845,6 @@
      drawingContext.shadowBlur = 0;
  }
 
- //console.log(features)
 
  /* //TODO:
 
