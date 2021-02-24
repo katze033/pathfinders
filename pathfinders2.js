@@ -170,7 +170,7 @@
          featurePalette = "Emerald Palette"
      } else if (n > 15 && n <= 20) {
          //CREAM PALETTE
-         primary = "#8447FF"
+         primary = "#6f3ddb"
          secondary = "#c4c0ba"
          travelerStroke = "#111111"
          travelerFill = "#111111"
@@ -410,7 +410,7 @@
      }
 
      let brushID = featureBrushStroke;
-
+     
      function brush0() {
          //SMOKY ORB BRUSH
          setImageStroke()
@@ -494,6 +494,7 @@
                  y1,
                  baseSize + waveTypeSpeed * waveSize + motionBlur)
          }
+         brush2()
      }
 
      function brush4() {
@@ -816,6 +817,7 @@
  let avatarSeed = Math.floor(Math.random() * 999) + 1;
 
  function draw() {
+     
     if (frameCount<=2) {
         setShadowContext() 
     }
@@ -823,6 +825,7 @@
      resetMatrix()
          
      if (frameCount > 1) {
+         
          drawImage()
      }
      stroke(secondary)
