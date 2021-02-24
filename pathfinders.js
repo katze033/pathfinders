@@ -33,6 +33,14 @@
 
 
  var features = []
+ var featuresReduced = []
+ let palette = setPalette()
+
+ primary = palette[0]
+ secondary = palette[1]
+ travelerStroke = palette[2]
+ travelerFill = palette[3]
+
 
  function setup() {
      const dim = Math.min(windowWidth, windowHeight);
@@ -41,24 +49,15 @@
      multiplier = width / 2400;
      frameRate(60)
 
-     let palette = setPalette()
-     primary = palette[0]
-     secondary = palette[1]
-     travelerStroke = palette[2]
-     travelerFill = palette[3]
-
      background(primary)
      rectMode(CENTER)
      drawCircuitGrid()
      noLoop()
-
  }
 
  let state = 'off'
 
-
  function controls() {
-
      if (state == 'off') {
          background(primary)
          loop()
@@ -110,13 +109,14 @@
          rMax = 2
          cMax = 2
 
-         featuresGridSize = "Start Screen Grid: Large"
+         featuresGridSize = "Start Screen Grid Size: Large"
      }
 
      features.push(featuresGridSize)
+     featuresReduced.push(featuresGridSize)
+
      return [gridArea, rMax, cMax, featuresGridSize]
  }
-
 
  function getGridOutputs() {
      let gridOutputs = setGridSize()
@@ -158,7 +158,7 @@
 
 
  function setPalette() {
-     let n = map(decPairs[1], 0, 255, 1, 100)
+     let n = mapRange(decPairs[1], 0, 255, 1, 100)
 
      let primary, secondary, travelerStroke, travelerFill, featurePalette
 
@@ -237,11 +237,11 @@
 
      } else if (n > 45 && n <= 50) {
          primary = "#41FF00"
-         secondary = "black"
+         secondary = "#111111"
          travelerStroke = "#41FF00"
          travelerFill = "#41FF00"
 
-         featurePalette = "Jasmine Palette"
+         featurePalette = "Terminal Palette"
 
      } else if (n > 50 && n <= 55) {
          primary = "#ED8B8A"
@@ -318,6 +318,8 @@
      }
 
      features.push('Color: ' + featurePalette)
+     featuresReduced.push('Color: ' + featurePalette)
+     
 
      let palette = [primary, secondary, travelerStroke, travelerFill]
      return palette
@@ -342,7 +344,6 @@
              strokeWeight(random(1, 12) * multiplier)
              stroke(travelerStroke)
              fill(travelerFill)
-
              x1 = (map(decPairs[4 * i], 0, 255, 1920 * multiplier, 2225 * multiplier))
              y1 = (map(decPairs[5 * i], 0, 255, height - 300 * multiplier, height - 480 * multiplier))
              x2 = (map(decPairs[6 * i], 0, 255, 25 * multiplier, 75 * multiplier))
@@ -402,7 +403,10 @@
  let featurePrimaryBrushStroke = Math.floor(mapRange(decPairs[15], 0, 255, 0, 9))
  let featureSecondaryBrushStroke = Math.floor(mapRange(decPairs[16], 0, 255, 0, 3))
  features.push('Primary Brush Variant: ' + featurePrimaryBrushStroke)
+ featuresReduced.push('Primary Brush Variant: ' + featurePrimaryBrushStroke)
+
  features.push('Secondary Brush Variant: ' + featureSecondaryBrushStroke)
+ featuresReduced.push('Secondary Brush Variant: ' + featureSecondaryBrushStroke)
 
 
  function drawImage() {
@@ -816,7 +820,6 @@
      }
  }
 
-
  let avatarSeed = Math.floor(decPairs[18], 0, 255, 1, 10000);
 
  function draw() {
@@ -875,9 +878,4 @@
  }
 
 
- /* //TODO:
-
-
- - make art blocks compatible
- - shadowContext on circle not layered correctly
- */
+console.log(featuresReduced)
