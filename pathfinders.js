@@ -78,9 +78,7 @@
  function setGridSize() {
      let featuresGridSize
 
-     //artblocksSeed
      let n = map(decPairs[0], 0, 255, 0, 100)
-     //let n = random(0, 100)
      let rMax, cMax
 
      if (n <= 33) {
@@ -134,9 +132,7 @@
      for (let r = 0; r < rMax; r++) {
          for (let c = 0; c < cMax; c++) {
              let x1, y1, x2, y2, x, y, d
-             //artblocksSeed
              let n = (map(rnd(), 0, 1, 0, 100))
-             //let n = random(0, 100)
              if (n < 33) {
                  x1 = 0 + (c * gridArea) * multiplier
                  y1 = 0 + (r * gridArea) * multiplier
@@ -162,11 +158,7 @@
 
 
  function setPalette() {
-     //artblocksSeed
      let n = map(decPairs[1], 0, 255, 1, 100)
-     //let n = Math.floor(Math.random() * 99) + 1;
-
-     console.log(n)
 
      let primary, secondary, travelerStroke, travelerFill, featurePalette
 
@@ -337,72 +329,46 @@
      let x1, y1, x2, y2
 
      function drawAvatarShapes() {
-         //artblocksSeed
          let randomizer = (map(decPairs[2], 0, 255, 1, 16))
          for (let i = 0; i < randomizer; i++) {
-             //artblocksSeed
              n = (map(decPairs[3], 0, 255, 0, 99))
-             //n = random(0, 99)
              if (n < 50) {
                  blendMode(DIFFERENCE)
              } else {
                  blendMode(SOFT_LIGHT)
              }
              rectMode(CENTER)
-             //artblocksSeed
 
              strokeWeight(random(1, 12) * multiplier)
              stroke(travelerStroke)
              fill(travelerFill)
 
-             //artblocksSeed
-             //artblocksSeed
-             //artblocksSeed
-             //artblocksSeed
-             //artblocksSeed
-             x1 = (map(decPairs[4 + i], 0, 255, 1920 * multiplier, 2225 * multiplier))
-             y1 = (map(decPairs[5 + i], 0, 255, height - 300 * multiplier, height - 480 * multiplier))
-             x2 = (map(decPairs[6 + i], 0, 255, 25 * multiplier, 75 * multiplier))
-             y2 = (map(decPairs[7 + i], 0, 255, 25 * multiplier, 75 * multiplier))
+             x1 = (map(decPairs[4 * i], 0, 255, 1920 * multiplier, 2225 * multiplier))
+             y1 = (map(decPairs[5 * i], 0, 255, height - 300 * multiplier, height - 480 * multiplier))
+             x2 = (map(decPairs[6 * i], 0, 255, 25 * multiplier, 75 * multiplier))
+             y2 = (map(decPairs[7 * i], 0, 255, 25 * multiplier, 75 * multiplier))
              let c = (map(decPairs[8], 0, 255, 0 * multiplier, 25 * multiplier))
-             /*
-             x1 = random(1920 * multiplier, 2225 * multiplier)
-              y1 = random(height - 300 * multiplier, height - 480 * multiplier)
-              x2 = random(25 * multiplier, 75 * multiplier)
-              y2 = random(25 * multiplier, 75 * multiplier)
-              let c = random(0 * multiplier, 25 * multiplier)
-              */
+
              rect(x1, y1, x2, y2, c)
              rect(4080 * multiplier - x1, y1, x2, y2, c)
          }
      }
 
      function drawAvatarLines() {
-         //artblocksSeed
+         for (let i = 0; i < map(decPairs[8], 0, 255, 1, 10); i++) {
+             strokeWeight(map(decPairs[9], 0, 255, 1 * multiplier, 3 * multiplier))
 
-         for (let i = 0; i < map(decPairs[8],0,255,1,10); i++) { //1,10
-             //artblocksSeed
-             
-             strokeWeight(map(decPairs[9],0,255,1*multiplier,3 * multiplier))
-             //artblocksSeed
-             //artblocksSeed
              let x1 = (map(decPairs[10 + i], 0, 255, 1820 * multiplier, 2040 * multiplier))
              let y1 = (map(decPairs[11 + i], 0, 255, 1880 * multiplier, 2040 * multiplier))
-             
-             //let x1 = random(1820 * multiplier, 2040 * multiplier)
-             //let y1 = random(1880 * multiplier, 2040 * multiplier)
+
              let x2 = x1
              let y2 = 2040 * multiplier
              line(x1, y1, x2, y2)
              line(4080 * multiplier - x1, y1, 4080 * multiplier - x2, y2)
              line(x1, 4080 * multiplier - y1, x2, y2)
              line(4080 * multiplier - x1, 4080 * multiplier - y1, 4080 * multiplier - x2, y2)
-             //artblocksSeed
-             //artblocksSeed
              x1 = (map(decPairs[12 + i], 0, 255, 1840 * multiplier, 2040 * multiplier))
              y1 = (map(decPairs[13 + i], 0, 255, 1840 * multiplier, 2040 * multiplier))
-             // x1 = random(1840 * multiplier, 2040 * multiplier)
-            // y1 = random(1840 * multiplier, 2040 * multiplier)
              x2 = 2040 * multiplier
              y2 = y1
              line(x1, y1, x2, y2)
@@ -415,9 +381,7 @@
 
      drawAvatarShapes()
      blendMode(BLEND)
-     //artblocksSeed
-    n = (map(decPairs[14],0,255,0,99))
-    //n = random(0, 99)
+     n = (map(decPairs[14], 0, 255, 0, 99))
      if (n < 40) {
          stroke(secondary)
      } else {
@@ -430,12 +394,13 @@
  t = 0
 
 
- //artblocksSeed
- //artblocksSeed
- let featurePrimaryBrushStroke = (Math.floor(Math.random() * 10));
+ function mapRange(value, a, b, c, d) {
+     value = (value - a) / (b - a);
+     return c + value * (d - c);
+ }
 
-// let featurePrimaryBrushStroke = (Math.floor(Math.random() * 10));
- let featureSecondaryBrushStroke = Math.floor(Math.random() * 4)
+ let featurePrimaryBrushStroke = Math.floor(mapRange(decPairs[15], 0, 255, 0, 9))
+ let featureSecondaryBrushStroke = Math.floor(mapRange(decPairs[16], 0, 255, 0, 3))
  features.push('Primary Brush Variant: ' + featurePrimaryBrushStroke)
  features.push('Secondary Brush Variant: ' + featureSecondaryBrushStroke)
 
@@ -769,9 +734,7 @@
          secondaryBrush3
      ]
 
-     //artblocksSeed
-     t += random(0.001, 0.005);
-
+     t += (map(decPairs[17], 0, 255, 0.001, 0.005))
 
      stroke(secondary)
      noFill()
@@ -853,8 +816,8 @@
      }
  }
 
- //artblocksSeed
- let avatarSeed = Math.floor(Math.random() * 999) + 1;
+
+ let avatarSeed = Math.floor(decPairs[18], 0, 255, 1, 10000);
 
  function draw() {
 
