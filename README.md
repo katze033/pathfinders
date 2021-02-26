@@ -1,1 +1,1 @@
-Artblocks #2 draft.
+Pathfinders is an interactive generative drawing project. The script sets color palettes, brush textures, a unique avatar, and assorted start screen layouts from token data. When viewing Pathfinders, left-click the starting image to erase your canvas and watch the deterministically chosen brush trail across the screen. When you are satisfied with the output, left-click again to pause, right-click and save your image, then share your results with others.
