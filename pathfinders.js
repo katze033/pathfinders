@@ -280,7 +280,7 @@ function setPalette() {
         primary = "#BCAF9F"
         secondary = "#322E3B"
         avatarStroke = "#322E3B"
-        avatarFill = "#322E3B"
+        avatarFill = "#eeeeee"
 
         featurePalette = "Muted Violet Palette"
 
