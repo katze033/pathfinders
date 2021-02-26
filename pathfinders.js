@@ -1,5 +1,6 @@
-let tokenData = {"hash":"0x4af30556a1cff937d812416b04e635ef8b154f251e93589d535e437749a28d70","tokenId":"19000078"}
-
+/* Sample token data. Uncomment to make script functional.
+//let tokenData = {"hash":"0x4af30556a1cff937d812416b04e635ef8b154f251e93589d535e437749a28d70","tokenId":"19000078"}
+*/
 let hashPairs = [];
 
 for (let j = 0; j < 32; j++) {
@@ -884,5 +885,3 @@ function rnd() {
 
     return (((seed < 0) ? ~seed + 1 : seed) % 1000000) / 1000000;
 }
-
-console.log(features)
