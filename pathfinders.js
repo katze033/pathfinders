@@ -1,8 +1,7 @@
 /* Sample token data. Uncomment to make script functional.
 //let tokenData = {"hash":"0x4af30556a1cff937d812416b04e635ef8b154f251e93589d535e437749a28d70","tokenId":"19000078"}
-*/
-
 let tokenData = {"hash":"0xe88bbb977eb80810fea24e75db6f7ed876751f83d8921958e10d8393bffe128d","tokenId":"19000125"}
+*/
 
 let hashPairs = [];
 
