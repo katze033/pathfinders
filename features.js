@@ -82,9 +82,8 @@ let featureSecondaryBrushStroke = Math.floor(mapRange(decPairs[16], 0, 255, 0, 3
 //Is your math going to be the same as mine?
 */
 
-
-let primaryBrushVariant = Math.floor((decPairs[15], 0, 255, 0, 9))
-let secondaryBrushVariant = Math.floor((decPairs[16], 0, 255, 0, 3))
+let primaryBrushVariant = Math.floor(decPairs[15].map(0, 255, 0, 9))
+let secondaryBrushVariant = Math.floor(decPairs[16].map(0, 255, 0, 3))
 
 features = ["Start Screen Grid Size: " + gridSize,
     "Color Palette: " + palette,
