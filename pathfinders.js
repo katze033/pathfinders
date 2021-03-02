@@ -3,6 +3,9 @@
 let tokenData = {"hash":"0xe88bbb977eb80810fea24e75db6f7ed876751f83d8921958e10d8393bffe128d","tokenId":"19000125"}
 */
 
+let tokenData = {"hash":"0xe88bbb977eb80810fea24e75db6f7ed876751f83d8921958e10d8393bffe128d","tokenId":"19000125"}
+
+
 let hashPairs = [];
 
 for (let j = 0; j < 32; j++) {
@@ -72,6 +75,7 @@ function setGridSize() {
     let featuresGridSize
 
     let n = map(decPairs[0], 0, 255, 0, 100)
+    console.log(map(decPairs[0], 0, 255, 0, 100))
     let rMax, cMax
 
     if (n <= 33) {
